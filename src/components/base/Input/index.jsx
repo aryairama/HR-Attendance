@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useField } from 'formik';
 import PropTypes from 'prop-types';
 import style from './style.module.css';
+import iconEye from '../../../assets/icons/eye.png';
 
 const Input = ({ classNameContainer, classNameLabel, label, className, validation, errorLabelEffect, ...props }) => {
   const [field, meta] = validation ? useField(props) : [];
@@ -49,7 +50,7 @@ const Input = ({ classNameContainer, classNameLabel, label, className, validatio
           <img
             onClick={() => setShowPassword(!showPassword)}
             className={`${style['input-icon-password']}`}
-            src="/assets/icon/eye.png"
+            src={iconEye}
             alt="icon-password"
           />
         )}
