@@ -1,0 +1,19 @@
+.container-form-login {
+    @apply container min-h-[calc(100vh-68px)] flex w-full flex-wrap content-start;
+}
+
+.form-login-header {
+    @apply text-4xl font-bold mt-[72px] mb-[10px] w-full text-center;
+}
+
+.form-login-description {
+    @apply text-base font-medium w-full text-center mb-[26px];
+}
+
+.form-login-card {
+    @apply bg-white p-4 rounded-md shadow-md w-full flex flex-wrap content-start flex-col gap-y-2;
+}
+
+.container-form-button-login {
+    @apply p-4 bg-white;
+}

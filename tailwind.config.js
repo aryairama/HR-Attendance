@@ -187,7 +187,12 @@ export default {
       '6xl': '72rem',
       '7xl': '80rem',
     },
-    container: {},
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: '1rem',
+      },
+    },
     content: {
       none: 'none',
     },
@@ -301,6 +306,7 @@ export default {
     },
     fontFamily: {
       sans: [
+        'Poppins',
         'ui-sans-serif',
         'system-ui',
         '-apple-system',
@@ -327,6 +333,7 @@ export default {
         '"Courier New"',
         'monospace',
       ],
+      poppins: ['Poppins'],
     },
     fontSize: {
       xs: ['0.75rem', { lineHeight: '1rem' }],
@@ -779,7 +786,7 @@ export default {
       150: '1.5',
     },
     screens: {
-      sm: '640px',
+      sm: '576px',
       md: '768px',
       lg: '1024px',
       xl: '1280px',
