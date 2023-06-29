@@ -1,5 +1,5 @@
 .main {
-    @apply py-16 w-full flex flex-wrap content-start;
+    @apply pt-16 w-full flex flex-wrap content-start relative;
 }
 
 .main-divider {
@@ -7,7 +7,7 @@
 }
 
 .main-content {
-    @apply relative w-full -top-36 container flex flex-wrap content-start z-40;
+    @apply absolute pb-16 left-0 right-0 top-16 w-full container flex flex-wrap content-start z-40;
 }
 
 .main-footer {
