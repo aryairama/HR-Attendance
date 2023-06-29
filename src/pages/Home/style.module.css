@@ -1,0 +1,48 @@
+.greeting-text-layout {
+    @apply flex w-full content-start justify-between;
+}
+
+.greeting-text-section {
+    @apply w-auto flex flex-col flex-wrap content-start;
+}
+
+.greeting-text,
+.working-hours {
+    @apply text-[#27173E] font-medium mb-[10px]
+}
+
+.greeting-username {
+    @apply font-bold text-[#27173E] text-4xl text-[32px];
+}
+
+.working-hours-text {
+    @apply text-[#958d9e] font-medium;
+}
+
+.list-menu-layout {
+    @apply w-full flex flex-wrap justify-around content-start items-start gap-[6px];
+}
+
+.list-menu {
+    @apply text-xs text-black flex flex-wrap flex-col items-center justify-center flex-grow flex-shrink basis-0 w-auto gap-y-[6px] cursor-pointer text-center;
+}
+
+.list-menu-icon {
+    @apply text-2xl p-3 text-white rounded-lg;
+}
+
+.status-attendance-layout {
+    @apply w-full flex flex-wrap content-start gap-[16px] mt-4;
+}
+
+.status-attendance-card {
+    @apply w-[calc(50%-8px)] gap-0;
+}
+
+.status-attendance-card-label {
+    @apply text-white font-medium text-sm mb-2;
+}
+
+.status-attendance-card-value {
+    @apply text-white text-base font-bold;
+}
