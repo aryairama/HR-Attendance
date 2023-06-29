@@ -3,9 +3,12 @@ import PropTypes from 'prop-types';
 import { Suspense, lazy } from 'react';
 import { Provider } from 'react-redux';
 import store from '../redux/store';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Login = lazy(() => import('../pages/Login'));
 const Home = lazy(() => import('../pages/Home'));
 const DashboardLayout = lazy(() => import('../layouts/Dashboard'));
+const Absent = lazy(() => import('../pages/Absent'));
 
 const Router = ({ children }) => {
   const router = createBrowserRouter([
@@ -19,15 +22,21 @@ const Router = ({ children }) => {
     },
     {
       element: <DashboardLayout />,
-      children: [{ path: '/dashboard', element: <Home /> }],
+      children: [
+        { path: '/dashboard', element: <Home /> },
+        { path: '/absent', element: <Absent /> },
+      ],
     },
   ]);
   return (
-    <Provider store={store}>
-      <Suspense fallback={<>Loading</>}>
-        <RouterProvider router={router}>{children}</RouterProvider>
-      </Suspense>
-    </Provider>
+    <>
+      <Provider store={store}>
+        <Suspense fallback={<>Loading</>}>
+          <RouterProvider router={router}>{children}</RouterProvider>
+        </Suspense>
+      </Provider>
+      <ToastContainer limit={1}/>
+    </>
   );
 };
 

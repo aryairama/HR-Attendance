@@ -6,8 +6,10 @@ import { useEffect } from 'react';
 import iconBrand from '../../assets/icons/hrattendance.png';
 import { IonIcon } from '@ionic/react';
 import { homeOutline, cameraOutline, calendarOutline, documentTextOutline, personOutline } from 'ionicons/icons';
+import { useNavigate } from 'react-router-dom';
 
 const DashboardLayout = () => {
+  const navigate = useNavigate();
   useEffect(() => {
     new Dropdown(document.getElementById('user-dropdown'), document.getElementById('user-menu-button'));
   }, []);
@@ -67,12 +69,12 @@ const DashboardLayout = () => {
         </div>
       </div>
       <div className={style['main-footer']}>
-        <div className={style['main-footer-content']}>
+        <div className={style['main-footer-content']} onClick={() => navigate('/dashboard')}>
           <IonIcon className="text-2xl" icon={homeOutline}></IonIcon>
           <p>Home</p>
         </div>
         <div className={style['main-footer-content']}>
-          <IonIcon className="text-2xl" icon={cameraOutline}></IonIcon>
+          <IonIcon className="text-2xl" icon={cameraOutline} onClick={() => navigate('/absent')}></IonIcon>
           <p>Absen</p>
         </div>
         <div className={style['main-footer-content']}>
