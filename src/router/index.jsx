@@ -4,6 +4,8 @@ import { Suspense, lazy } from 'react';
 import { Provider } from 'react-redux';
 import store from '../redux/store';
 const Login = lazy(() => import('../pages/Login'));
+const Home = lazy(() => import('../pages/Home'));
+const DashboardLayout = lazy(() => import('../layouts/Dashboard'));
 
 const Router = ({ children }) => {
   const router = createBrowserRouter([
@@ -14,6 +16,10 @@ const Router = ({ children }) => {
     {
       path: '/login',
       element: <Login />,
+    },
+    {
+      element: <DashboardLayout />,
+      children: [{ path: '/dashboard', element: <Home /> }],
     },
   ]);
   return (

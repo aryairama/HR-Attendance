@@ -2,7 +2,7 @@
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}', 'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}'],
   presets: [],
-  darkMode: 'media', // or 'class'
+  // darkMode: 'media', // or 'class'
   theme: {
     accentColor: ({ theme }) => ({
       ...theme('colors'),

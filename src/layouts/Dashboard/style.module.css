@@ -1,0 +1,11 @@
+.main {
+    @apply py-16 w-full flex flex-wrap content-start;
+}
+
+.main-divider {
+    @apply bg-[#1b90de] h-36 w-full;
+}
+
+.main-content {
+    @apply relative w-full -top-36 container flex flex-wrap content-start z-40;
+}
