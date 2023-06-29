@@ -9,3 +9,11 @@
 .main-content {
     @apply relative w-full -top-36 container flex flex-wrap content-start z-40;
 }
+
+.main-footer {
+    @apply fixed bg-white shadow-md left-0 bottom-0 w-full flex flex-wrap justify-around content-start min-h-[16.2px] z-50 py-[2px];
+}
+
+.main-footer-content {
+    @apply text-black text-[10.8px] mt-[4px] flex w-auto flex-col items-center justify-center gap-y-[4px] cursor-pointer;
+}

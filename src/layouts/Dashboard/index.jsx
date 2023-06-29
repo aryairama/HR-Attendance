@@ -4,6 +4,8 @@ import { Dropdown } from 'flowbite';
 import { useEffect } from 'react';
 // import PropTypes from 'prop-types';
 import iconBrand from '../../assets/icons/hrattendance.png';
+import { IonIcon } from '@ionic/react';
+import { homeOutline, cameraOutline, calendarOutline, documentTextOutline, personOutline } from 'ionicons/icons';
 
 const DashboardLayout = () => {
   useEffect(() => {
@@ -64,7 +66,28 @@ const DashboardLayout = () => {
           <Outlet />
         </div>
       </div>
-      <div className={style['main-footer']}></div>
+      <div className={style['main-footer']}>
+        <div className={style['main-footer-content']}>
+          <IonIcon className="text-2xl" icon={homeOutline}></IonIcon>
+          <p>Home</p>
+        </div>
+        <div className={style['main-footer-content']}>
+          <IonIcon className="text-2xl" icon={cameraOutline}></IonIcon>
+          <p>Absen</p>
+        </div>
+        <div className={style['main-footer-content']}>
+          <IonIcon className="text-2xl" icon={calendarOutline}></IonIcon>
+          <p>Cuti</p>
+        </div>
+        <div className={style['main-footer-content']}>
+          <IonIcon className="text-2xl" icon={documentTextOutline}></IonIcon>
+          <p>History</p>
+        </div>
+        <div className={style['main-footer-content']}>
+          <IonIcon className="text-2xl" icon={personOutline}></IonIcon>
+          <p>Profil</p>
+        </div>
+      </div>
     </div>
   );
 };
