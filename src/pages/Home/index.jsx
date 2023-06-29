@@ -1,10 +1,23 @@
 import { Card } from '../../components/base';
+import { Datatable } from '../../components/module';
 import style from './style.module.css';
 import { IonIcon } from '@ionic/react';
-import { analyticsOutline, cameraOutline, documentTextOutline, documentOutline, timeOutline } from 'ionicons/icons';
-import { CardThemeWithoutGap } from '../../components/base/Card';
+import {
+  analyticsOutline,
+  cameraOutline,
+  documentTextOutline,
+  documentOutline,
+  timeOutline,
+  logIn,
+  person,
+  sad,
+  alarm,
+} from 'ionicons/icons';
+import { CardThemeWithoutGap, CardThemeFlexRow } from '../../components/base/Card';
+import { useHome } from '../../hooks/local';
 
 const Home = () => {
+  const { tableListAttendance, listAttendance } = useHome();
   return (
     <>
       <Card>
@@ -52,6 +65,58 @@ const Home = () => {
           <p className={style['status-attendance-card-value']}>Belum Absen</p>
         </Card>
       </div>
+      <div className={style['latest-attendance-filter-layout']}>
+        Absensi Bulan
+        <select className={style['latest-attendance-filter-select']} name="month" id="month">
+          <option value="01">Januari</option>
+          <option value="02">Februari</option>
+          <option value="03">Maret</option>
+          <option value="04">April</option>
+          <option value="05">Mei</option>
+          <option value="06" selected="">
+            Juni
+          </option>
+          <option value="07">Juli</option>
+          <option value="08">Agustus</option>
+          <option value="09">September</option>
+          <option value="10">Oktober</option>
+          <option value="12">November</option>
+          <option value="12">Desember</option>
+        </select>
+        <span>{new Date().getFullYear()}</span>
+      </div>
+      <div className={style['latest-attendance-filter-indicator-layout']}>
+        <Card theme={CardThemeFlexRow} className={style['latest-attendance-filter-indicator-card']}>
+          <IonIcon className="text-[25px] text-[#754AED]" icon={logIn}></IonIcon>
+          <div className={style['latest-attendance-filter-indicator-card-value-layout']}>
+            <p className={style['latest-attendance-filter-indicator-card-label']}>Hadir</p>
+            <p className={style['latest-attendance-filter-indicator-card-value']}>0 Hari</p>
+          </div>
+        </Card>
+        <Card theme={CardThemeFlexRow} className={style['latest-attendance-filter-indicator-card']}>
+          <IonIcon className="text-[25px] text-[#1DCC70]" icon={person}></IonIcon>
+          <div className={style['latest-attendance-filter-indicator-card-value-layout']}>
+            <p className={style['latest-attendance-filter-indicator-card-label']}>Hadir</p>
+            <p className={style['latest-attendance-filter-indicator-card-value']}>0 Hari</p>
+          </div>
+        </Card>
+        <Card theme={CardThemeFlexRow} className={style['latest-attendance-filter-indicator-card']}>
+          <IonIcon className="text-[25px] text-[#8494A8]" icon={sad}></IonIcon>
+          <div className={style['latest-attendance-filter-indicator-card-value-layout']}>
+            <p className={style['latest-attendance-filter-indicator-card-label']}>Hadir</p>
+            <p className={style['latest-attendance-filter-indicator-card-value']}>0 Hari</p>
+          </div>
+        </Card>
+        <Card theme={CardThemeFlexRow} className={style['latest-attendance-filter-indicator-card']}>
+          <IonIcon className="text-[25px] text-[#8494A8]" icon={alarm}></IonIcon>
+          <div className={style['latest-attendance-filter-indicator-card-value-layout']}>
+            <p className={style['latest-attendance-filter-indicator-card-label']}>Hadir</p>
+            <p className={style['latest-attendance-filter-indicator-card-value']}>0 Hari</p>
+          </div>
+        </Card>
+      </div>
+      <p className="text-base font-medium text-black mb-1 mt-8">1 Minggu Terakhir</p>
+      <Datatable table={tableListAttendance} totalData={listAttendance.pagination.countData} />
     </>
   );
 };

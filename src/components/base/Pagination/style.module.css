@@ -1,0 +1,39 @@
+.pagination {
+  @apply flex flex-wrap w-auto list-none text-sm text-gray-700 font-medium p-0;
+}
+
+.pagination>li {
+  @apply bg-white px-[12.5px] py-[6px] border border-gray-200;
+}
+
+.pagination>li:first-child {
+  @apply rounded-l-[6px];
+}
+
+.pagination>li:last-child {
+  @apply rounded-r-[6px];
+}
+
+.pagination>li:not(.active):not(.disabled) {
+  @apply cursor-pointer;
+}
+
+/* .pagination > li:not(.active):not(.disabled):hover {
+  @apply bg-green-custom-900 text-white;
+} */
+
+.pagination>.next-prev:not(.active):not(.disabled):hover {
+  @apply text-[#1b90de];
+}
+
+.pagination>li:not(.active):not(.disabled):not(.next-prev):active {
+  @apply bg-[#1b90de] text-white border-x-[#1b90de];
+}
+
+.pagination>li.active {
+  @apply bg-[#1b90de] text-white border-x-[#1b90de];
+}
+
+.pagination>li.disabled {
+  @apply pointer-events-none text-gray-300;
+}

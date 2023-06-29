@@ -1,0 +1,18 @@
+.datatable {
+    table-layout: auto;
+    border-collapse: collapse;
+    border-spacing: 0px;
+    @apply min-w-full;
+}
+
+.datatable-th {
+    @apply bg-[#1b90de] p-3 text-white text-sm whitespace-normal;
+}
+
+.datatable-tbody-tr {
+    @apply bg-white;
+}
+
+.datatable-td-content {
+    @apply text-xs font-normal p-3 whitespace-normal;
+}

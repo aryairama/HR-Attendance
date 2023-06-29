@@ -46,3 +46,45 @@
 .status-attendance-card-value {
     @apply text-white text-base font-bold;
 }
+
+.latest-attendance-filter-layout {
+    @apply w-full flex flex-wrap content-start items-center gap-1 text-black text-base font-medium mt-8;
+}
+
+.latest-attendance-filter-select {
+    @apply appearance-none bg-transparent outline-none border-0 text-[#6236FF];
+}
+
+.latest-attendance-filter-select:focus {
+    @apply ring-0;
+}
+
+.latest-attendance-filter-layout>span {
+    @apply text-[#6236FF]
+}
+
+.latest-attendance-filter-indicator-layout {
+    @apply flex w-full flex-wrap items-center content-center gap-[16px] mt-2;
+}
+
+.latest-attendance-filter-indicator-card {
+    @apply w-[calc(50%-8px)];
+}
+
+@screen md {
+    .latest-attendance-filter-indicator-card {
+        @apply w-[calc(25%-12px)];
+    }
+}
+
+.latest-attendance-filter-indicator-card-value-layout {
+    @apply flex flex-col w-auto
+}
+
+.latest-attendance-filter-indicator-card-label {
+    @apply text-base text-black font-medium mb-[3px];
+}
+
+.latest-attendance-filter-indicator-card-value {
+    @apply text-xs text-[#958d9e] font-medium;
+}
