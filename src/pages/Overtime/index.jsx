@@ -24,6 +24,10 @@ const Overtime = () => {
     Form,
     Formik,
     formOvertime,
+    filter,
+    setFilter,
+    refFormik,
+    handlerSubmit,
   } = useOvertime();
   return (
     <>
@@ -65,20 +69,20 @@ const Overtime = () => {
           >
             <div className="flex flex-col flex-wrap">
               <p className="text-xs flex items-center gap-2 text-white mb-2">
-                <span className="bg-purple-700 rounded-md p-1 ">{value.brand}</span>
+                <span className="bg-purple-700 rounded-md p-1 ">{value.approval_status}</span>
               </p>
               <p className="text-xs text-gray-600 mb-[1px]">
-                <IonIcon icon={calendarOutline} /> {value.created_at} - {value.created_at}
+                <IonIcon icon={calendarOutline} /> {value.start_date} - {value.end_date}
               </p>
               <p className="text-xs text-gray-600 mb-[1px]">
-                <IonIcon icon={timeOutline} /> Mulai Lembur : {value.created_at} - {value.created_at}
+                <IonIcon icon={timeOutline} /> Mulai Lembur : {value.start_time} - {value.end_time}
               </p>
               <p className="text-xs text-gray-600 mb-[1px]">
                 <IonIcon icon={chatbubbleOutline} /> {value.description}
               </p>
             </div>
             <IonIcon
-              onClick={() => handlerEditForm('ini id')}
+              onClick={() => handlerEditForm(value.id)}
               className="bg-yellow-400 text-white p-1 rounded-md cursor-pointer"
               icon={pencilOutline}
             />
@@ -87,9 +91,10 @@ const Overtime = () => {
         <div className="ml-auto">
           <Pagination
             numberOfButtons={5}
-            totalData={listOvertime.pagination.countData || 0}
-            pageSize={5}
-            currentPage={1}
+            totalData={listOvertime.pagination.total || 0}
+            pageSize={10}
+            currentPage={filter.page}
+            setPage={(e) => setFilter((old) => ({ ...old, page: e }))}
           />
         </div>
       </Card>
@@ -102,11 +107,12 @@ const Overtime = () => {
         >
           <p className="text-lg font-bold w-full">Form Permohonan Lembur</p>
           <Formik
+            innerRef={refFormik}
             enableReinitialize={true}
             initialValues={formOvertime}
             validateOnBlur={true}
             validateOnChange={true}
-            onSubmit={(values, formik) => console.log(values, formik)}
+            onSubmit={(values, formik) => handlerSubmit(values, formik)}
           >
             {(formik) => (
               <Form className="mt-5" onSubmit={formik.handleSubmit}>
