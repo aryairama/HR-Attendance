@@ -44,18 +44,36 @@ const Absent = () => {
           }}
         >
           {({ getScreenshot }) => (
-            <Button
-              disabled={accessAbsent.camera && accessAbsent.location && accessAbsent.radius ? false : true}
-              onClick={() => submitAbsent(getScreenshot)}
-              className="!mb-0 !w-fit mx-auto disabled:bg-gray-400"
-              size="small"
-              schema="pills-purple"
-            >
-              <div className="flex items-center gap-1">
-                <IonIcon icon={fingerPrintOutline} className="text-white text-xl" />
-                Attend
-              </div>
-            </Button>
+            <>
+              {!authData.attendance.clock_in && !authData.attendance.clock_out && (
+                <Button
+                  disabled={accessAbsent.camera && accessAbsent.location && accessAbsent.radius ? false : true}
+                  onClick={() => submitAbsent(getScreenshot, 'clock_in')}
+                  className="!mb-0 !w-fit mx-auto disabled:bg-gray-400"
+                  size="small"
+                  schema="pills-purple"
+                >
+                  <div className="flex items-center gap-1">
+                    <IonIcon icon={fingerPrintOutline} className="text-white text-xl" />
+                    Clock In
+                  </div>
+                </Button>
+              )}
+              {authData.attendance.clock_in && !authData.attendance.clock_out && (
+                <Button
+                  disabled={accessAbsent.camera && accessAbsent.location && accessAbsent.radius ? false : true}
+                  onClick={() => submitAbsent(getScreenshot, 'clock_out')}
+                  className="!mb-0 !w-fit mx-auto disabled:bg-gray-400"
+                  size="small"
+                  schema="pills-purple"
+                >
+                  <div className="flex items-center gap-1">
+                    <IonIcon icon={fingerPrintOutline} className="text-white text-xl" />
+                    Clock Out
+                  </div>
+                </Button>
+              )}
+            </>
           )}
         </Webcam>
       </Card>

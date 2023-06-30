@@ -8,13 +8,19 @@ export const absent = async (values) => {
   try {
     const formData = new FormData();
     formData.append('photo', values.file);
-    formData.append('attendance_type', 'clock_in');
+    formData.append('attendance_type', values.attendance);
     formData.append('longitude', values.long);
     formData.append('latitude', values.lat);
-    const { data } = await (await axios().post('/attendances', formData)).data;
-    console.log(data);
+    await (
+      await axios().post('/attendances', formData)
+    ).data;
+    toast.success('Berhasil melakukan absen');
   } catch (error) {
-    toast.error('Terjadi kesalahan, silahkan coba lagi!');
+    if (error.response.status >= 400 && error.response.status < 500) {
+      toast.warn(error.response.data.data.message);
+    } else {
+      toast.error('Terjadi kesalahan, silahkan coba lagi!');
+    }
   }
   store.dispatch(HIDDEN_LOADER());
 };

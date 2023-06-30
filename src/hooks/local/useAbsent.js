@@ -59,11 +59,11 @@ const useAbsent = () => {
     }
   };
 
-  const submitAbsent = async (getScreenshot) => {
+  const submitAbsent = async (getScreenshot, attendance) => {
     const base64Image = getScreenshot();
     let file = base64OrBlobToFiles(base64Image, new Date().getTime() + '.jpg', 'image/jpg', 'base64');
     file = await process_image(file, 0.5, 'jpg');
-    absent({ file, ...latLong });
+    absent({ file, ...latLong, attendance });
   };
   useEffect(() => {
     checkPermission();
@@ -83,7 +83,7 @@ const useAbsent = () => {
       setAccessAbsent((oldVal) => ({ ...oldVal, radius: true }));
     }
   }, [latLong]);
-  return { time, setTime, latLong, setLatLong, submitAbsent, accessAbsent,authData };
+  return { time, setTime, latLong, setLatLong, submitAbsent, accessAbsent, authData };
 };
 
 export default useAbsent;
