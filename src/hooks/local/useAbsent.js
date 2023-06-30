@@ -63,7 +63,7 @@ const useAbsent = () => {
     const base64Image = getScreenshot();
     let file = base64OrBlobToFiles(base64Image, new Date().getTime() + '.jpg', 'image/jpg', 'base64');
     file = await process_image(file, 0.5, 'jpg');
-    absent({ file, ...latLong, attendance });
+    absent({ file, ...latLong, attendance }, navigate);
   };
   useEffect(() => {
     checkPermission();

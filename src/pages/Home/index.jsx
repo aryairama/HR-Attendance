@@ -90,11 +90,15 @@ const Home = () => {
       <div className={style['status-attendance-layout']}>
         <Card theme={CardThemeWithoutGap} className={`${style['status-attendance-card']} bg-[#1b90de]`}>
           <p className={style['status-attendance-card-label']}>Absen Masuk</p>
-          <p className={style['status-attendance-card-value']}>Belum Absen</p>
+          <p className={style['status-attendance-card-value']}>
+            {authData.attendance.clock_in ? 'Sudah Absen' : 'Belum Absen'}
+          </p>
         </Card>
         <Card theme={CardThemeWithoutGap} className={`${style['status-attendance-card']} bg-[#8494A8]`}>
           <p className={style['status-attendance-card-label']}>Absen Pulang</p>
-          <p className={style['status-attendance-card-value']}>Belum Absen</p>
+          <p className={style['status-attendance-card-value']}>
+            {authData.attendance.clock_out ? 'Sudah Absen' : 'Belum Absen'}
+          </p>
         </Card>
       </div>
       <div className={style['latest-attendance-filter-layout']}>
