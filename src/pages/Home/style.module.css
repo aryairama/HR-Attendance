@@ -40,11 +40,11 @@
 }
 
 .status-attendance-card-label {
-    @apply text-white font-medium text-sm mb-2;
+    @apply text-white font-extralight text-xs mb-2;
 }
 
 .status-attendance-card-value {
-    @apply text-white text-base font-bold;
+    @apply text-white text-xl font-bold;
 }
 
 .latest-attendance-filter-layout {
