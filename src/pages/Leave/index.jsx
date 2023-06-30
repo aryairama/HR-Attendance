@@ -22,8 +22,12 @@ const Leave = () => {
     handlerCloseModal,
     Formik,
     Form,
-    inputOnlyNumber,
+    // inputOnlyNumber,
     handlerEditForm,
+    filter,
+    setFilter,
+    refFormik,
+    handlerSubmit,
   } = useLeave();
   return (
     <>
@@ -65,20 +69,20 @@ const Leave = () => {
           >
             <div className="flex flex-col flex-wrap">
               <p className="text-xs flex items-center gap-2 text-white mb-2">
-                <span className="bg-purple-700 rounded-md p-1 ">{value.brand}</span>
+                <span className="bg-purple-700 rounded-md p-1 ">{value.approval_status}</span>
               </p>
               <p className="text-xs text-gray-600 mb-[1px]">
-                <IonIcon icon={calendarOutline} /> {value.created_at} - {value.created_at}
+                <IonIcon icon={calendarOutline} /> {value.start_date} - {value.end_date}
               </p>
               <p className="text-xs text-gray-600 mb-[1px]">
-                <IonIcon icon={calendarOutline} /> Mulai Kerja : {value.created_at}
+                <IonIcon icon={calendarOutline} /> Mulai Kerja : {value.entry_date}
               </p>
               <p className="text-xs text-gray-600 mb-[1px]">
                 <IonIcon icon={chatbubbleOutline} /> {value.description}
               </p>
             </div>
             <IonIcon
-              onClick={() => handlerEditForm('ini id')}
+              onClick={() => handlerEditForm(value.id)}
               className="bg-yellow-400 text-white p-1 rounded-md cursor-pointer"
               icon={pencilOutline}
             />
@@ -87,9 +91,10 @@ const Leave = () => {
         <div className="ml-auto">
           <Pagination
             numberOfButtons={5}
-            totalData={listLeave.pagination.countData || 0}
-            pageSize={5}
-            currentPage={1}
+            totalData={listLeave.pagination.total || 0}
+            pageSize={10}
+            currentPage={filter.page}
+            setPage={(e) => setFilter((old) => ({ ...old, page: e }))}
           />
         </div>
       </Card>
@@ -102,11 +107,12 @@ const Leave = () => {
         >
           <p className="text-lg font-bold w-full">Form Permohonan Cuti</p>
           <Formik
+            innerRef={refFormik}
             enableReinitialize={true}
             initialValues={formLeave}
             validateOnBlur={true}
             validateOnChange={true}
-            onSubmit={(values, formik) => console.log(values, formik)}
+            onSubmit={(values, formik) => handlerSubmit(values, formik)}
           >
             {(formik) => (
               <Form className="mt-5" onSubmit={formik.handleSubmit}>
@@ -114,13 +120,13 @@ const Leave = () => {
                 <Input name="start_date" id="start_date" label="Mulai Cuti" type="date" />
                 <Input name="end_date" id="end_date" label="Berakhir Cuti" type="date" />
                 <Input name="entry_date" id="entry_date" label="Tanggal Masuk Kerja" type="date" />
-                <Input
+                {/* <Input
                   name="leave_count"
                   id="leave_count"
                   label="Jumlah Cuti"
                   type="number"
                   onChange={(e) => inputOnlyNumber(formik, e.target.name, e.target.value, false)}
-                />
+                /> */}
                 <Input name="description" id="description" label="Keterangan" />
                 <Button type="submit" className="!mb-0 mt-3" size="small" schema="pills-purple">
                   Simpan
