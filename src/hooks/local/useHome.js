@@ -11,9 +11,10 @@ import { datatableReducer, initialDatatable } from '../../redux/reducers/datatab
 import { useReducer, useEffect } from 'react';
 import { actionGetProducts } from '../../redux/action/dumyApiAction';
 import { Dropdown } from 'flowbite';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 
 const useHome = () => {
+  const [authData] = useOutletContext();
   const navigate = useNavigate();
   const columnHelper = createColumnHelper();
   const [listAttendance, setListAttendance] = useReducer(datatableReducer, initialDatatable);
@@ -73,7 +74,7 @@ const useHome = () => {
   useEffect(() => {
     new Dropdown(document.getElementById('permit-dropdown'), document.getElementById('permit-menu-button'));
   }, []);
-  return { listAttendance, setListAttendance, tableListAttendance, navigate };
+  return { listAttendance, setListAttendance, tableListAttendance, navigate, authData };
 };
 
 export default useHome;

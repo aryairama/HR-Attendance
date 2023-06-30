@@ -19,18 +19,22 @@ import { CardThemeWithoutGap, CardThemeFlexRow } from '../../components/base/Car
 import { useHome } from '../../hooks/local';
 
 const Home = () => {
-  const { tableListAttendance, listAttendance, navigate } = useHome();
+  const { tableListAttendance, listAttendance, navigate, authData } = useHome();
   return (
     <>
       <Card>
         <div className={style['greeting-text-layout']}>
           <div className={style['greeting-text-section']}>
             <p className={style['greeting-text']}>Selamat Siang</p>
-            <p className={style['greeting-username']}>Arya Irama Wahono</p>
+            <p className={style['greeting-username']}>
+              {authData.first_name} {authData.last_name}
+            </p>
           </div>
           <div className={style['greeting-text-section']}>
             <div className={style['working-hours']}>Jam Kerja</div>
-            <div className={style['working-hours-text']}>06:30:00 - 16:30:00</div>
+            <div className={style['working-hours-text']}>
+              {authData.assignment.time_start} - {authData.assignment.time_end}
+            </div>
           </div>
         </div>
         <Card.Divider></Card.Divider>

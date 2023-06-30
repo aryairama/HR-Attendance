@@ -6,14 +6,16 @@ import { fingerPrintOutline } from 'ionicons/icons';
 import { IonIcon } from '@ionic/react';
 
 const Absent = () => {
-  const { time, latLong, submitAbsent } = useAbsent();
+  const { time, latLong, submitAbsent, accessAbsent, authData } = useAbsent();
   return (
     <>
       <Card>
         <div className={styleHome['greeting-text-layout']}>
           <div className={styleHome['greeting-text-section']}>
             <p className={styleHome['greeting-text']}>Selamat Siang</p>
-            <p className={styleHome['greeting-username']}>Arya Irama Wahono</p>
+            <p className={styleHome['greeting-username']}>
+              {authData.first_name} {authData.last_name}
+            </p>
           </div>
           <div className={styleHome['greeting-text-section']}>
             <div className={styleHome['working-hours']}>Jam Kerja</div>
@@ -42,8 +44,9 @@ const Absent = () => {
         >
           {({ getScreenshot }) => (
             <Button
+              disabled={accessAbsent.camera && accessAbsent.location && accessAbsent.radius ? false : true}
               onClick={() => submitAbsent(getScreenshot)}
-              className="!mb-0 !w-fit mx-auto"
+              className="!mb-0 !w-fit mx-auto disabled:bg-gray-400"
               size="small"
               schema="pills-purple"
             >

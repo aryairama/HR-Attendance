@@ -68,7 +68,7 @@ const DashboardLayout = () => {
       <div className={style['main']}>
         <div className={style['main-divider']}></div>
         <div className={style['main-content']}>
-          <Outlet />
+          <Outlet context={[authData]} />
         </div>
       </div>
       <div className={style['main-footer']}>
