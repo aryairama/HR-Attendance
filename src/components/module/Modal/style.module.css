@@ -1,0 +1,25 @@
+.modal {
+  background: rgb(23, 28, 38, 0.7);
+  @apply fixed w-full h-full  top-0 left-0 bottom-0 right-0 transition-all ease-in-out duration-500 overflow-y-auto;
+  @apply z-[-1] opacity-0;
+}
+
+.modal.modal-show {
+  @apply opacity-100 transition-all ease-in-out duration-500 z-[60];
+}
+
+.modal-content {
+  background: white;
+  @apply mx-auto -translate-y-20 p-4;
+  @apply w-4/12 h-min mt-1 transition-all ease-in-out duration-500 opacity-0 rounded-lg break-all;
+}
+
+.modal.modal-show > .modal-content {
+  @apply transition-all ease-in-out duration-500 opacity-100 z-[60] translate-y-0;
+}
+
+@screen sm {
+  .modal-content {
+    @apply mt-16;
+  }
+}

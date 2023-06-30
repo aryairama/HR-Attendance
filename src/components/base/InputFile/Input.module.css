@@ -1,0 +1,36 @@
+.input-container {
+  @apply w-full pt-3;
+}
+
+
+.input-label {
+  @apply mb-[2px] inline-block text-gray-700 text-xs truncate;
+}
+
+.input-label-required {
+  @apply text-red-500 text-xs;
+}
+
+.box-file-name {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: auto;
+  @apply bg-white w-[1%] min-w-[0] h-[35px] border rounded-l-lg border-gray-300 text-base text-gray-700 px-3 my-auto;
+  @apply flex items-center relative;
+}
+
+.box-file-name>span {
+  @apply truncate;
+}
+
+.btn-label-input-file {
+  @apply gap-1 flex items-center py-[5px] bg-black px-5 cursor-pointer text-base rounded-r-lg text-white;
+}
+
+.clear-box-file-name {
+  @apply absolute top-1 right-0 w-[25px] h-[25px] cursor-pointer;
+}
+
+.label-box {
+  @apply pr-2 border-r mr-1 h-full border-gray-300 text-base flex items-center;
+}

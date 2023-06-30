@@ -1,11 +1,14 @@
-import { Card, Input, Button, Pagination } from '../../components/base';
+import { Card, Input, Button, Pagination, InputFile } from '../../components/base';
 import { CardThemeFlexRowWrap } from '../../components/base/Card';
 import { IonIcon } from '@ionic/react';
 import { repeatOutline, addCircleOutline, checkmarkOutline, calendarOutline, chatbubbleOutline } from 'ionicons/icons';
 import { usePermit } from '../../hooks/local';
+import { ModalDialog } from '../../components/module';
+import { createPortal } from 'react-dom';
 
 const Permit = () => {
-  const { listPermit } = usePermit();
+  const { listPermit, modalAddForm, setModalAddForm, handlerCloseModal, Form, Formik, formPermit, handlerFile } =
+    usePermit();
   return (
     <>
       <Card theme={CardThemeFlexRowWrap}>
@@ -24,7 +27,7 @@ const Permit = () => {
               Clear
             </div>
           </Button>
-          <Button className="!mb-0 !w-fit" size="small" schema="pills-yellow">
+          <Button onClick={() => setModalAddForm(true)} className="!mb-0 !w-fit" size="small" schema="pills-yellow">
             <div className="flex items-center gap-1">
               <IonIcon icon={addCircleOutline} className="text-white text-xl" />
               Tambah
@@ -73,6 +76,44 @@ const Permit = () => {
           />
         </div>
       </Card>
+      {createPortal(
+        <ModalDialog
+          modalId="modal-url-activation-digisign"
+          showModal={modalAddForm}
+          className="md:!w-[70%] sm:!w-10/12 !w-11/12"
+          closeModal={handlerCloseModal}
+        >
+          <p className="text-lg font-bold w-full">Tambah Pengajuan Izin</p>
+          <Formik
+            enableReinitialize={true}
+            initialValues={formPermit}
+            validateOnBlur={true}
+            validateOnChange={true}
+            onSubmit={(values, formik) => console.log(values, formik)}
+          >
+            {(formik) => (
+              <Form className="mt-5" onSubmit={formik.handleSubmit}>
+                <Input name="name" id="name" label="nama" disabled />
+                <Input name="start_date" id="start_date" label="Tanggal Mulai" type="date" />
+                <Input name="end_date" id="end_date" label="Tanggal Akhir" type="date" />
+                <InputFile
+                  label="Tanda Terima Invoice"
+                  id="file"
+                  name="file"
+                  accept="image/jpeg, image/jpg, image/png, application/pdf"
+                  namefile={formik.values.file?.name ? formik.values.file?.name : 'File type: jpg, jpeg, png, dan pdf.'}
+                  onChange={(e) => handlerFile(e, formik)}
+                />
+                <Input name="description" id="description" label="Keterangan" />
+                <Button type="submit" className="!mb-0 mt-3" size="small" schema="pills-purple">
+                  Simpan
+                </Button>
+              </Form>
+            )}
+          </Formik>
+        </ModalDialog>,
+        document.getElementById('root-modal')
+      )}
     </>
   );
 };

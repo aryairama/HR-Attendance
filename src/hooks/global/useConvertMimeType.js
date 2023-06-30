@@ -114,8 +114,17 @@ const useConvertMimeType = () => {
       }
     });
   };
-
-  return { filesToBase64, base64OrBlobToFiles, base64ToBlob, reduce_image_file_size, process_image };
+  const convertPngToJpg = async (file) => {
+    if (file instanceof File && file.type === 'image/png') {
+      const filename = file.name.replace(/.(png|jpg|jpeg)$/g, '');
+      const base64File = await filesToBase64(file);
+      const base64ToFile = base64OrBlobToFiles(base64File, `${filename}.jpg`, 'image/jpg', 'base64');
+      return base64ToFile;
+    } else {
+      return file;
+    }
+  };
+  return { convertPngToJpg, filesToBase64, base64OrBlobToFiles, base64ToBlob, reduce_image_file_size, process_image };
 };
 
 export default useConvertMimeType;
