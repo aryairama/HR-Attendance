@@ -11,7 +11,7 @@ const Permit = () => {
       <Card theme={CardThemeFlexRowWrap}>
         <Input classNameContainer="md:!w-[calc(33.3333%-8px)]" label="Tanggal Mulai" validation={false} type="date" />
         <Input classNameContainer="md:!w-[calc(33.3333%-8px)]" label="Tanggal Akhir" validation={false} type="date" />
-        <div className="md:!w-[calc(33.3333%-8px)] flex flex-wrap gap-2 justify-end">
+        <div className="md:!w-[calc(33.3333%-8px)] flex flex-wrap gap-2 md:justify-end">
           <Button className="!mb-0 !w-fit" size="small" schema="pills-purple">
             <div className="flex items-center gap-1">
               <IonIcon icon={checkmarkOutline} className="text-white text-xl" />
