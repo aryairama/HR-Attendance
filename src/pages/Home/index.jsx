@@ -57,7 +57,7 @@ const Home = () => {
                   <IonIcon icon={documentOutline} />
                   <a className="block px-4 py-2 text-sm text-gray-700">Izin</a>
                 </li>
-                <li className="flex items-center px-3 gap-1 hover:bg-gray-100">
+                <li className="flex items-center px-3 gap-1 hover:bg-gray-100" onClick={() => navigate('/leave')}>
                   <IonIcon icon={calendarOutline} />
                   <a className="block px-4 py-2 text-sm text-gray-700 ">Cuti</a>
                 </li>

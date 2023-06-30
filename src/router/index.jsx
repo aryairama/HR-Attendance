@@ -10,6 +10,7 @@ const Home = lazy(() => import('../pages/Home'));
 const DashboardLayout = lazy(() => import('../layouts/Dashboard'));
 const Absent = lazy(() => import('../pages/Absent'));
 const Permit = lazy(() => import('../pages/Permit'));
+const Leave = lazy(() => import('../pages/Leave'));
 
 const Router = ({ children }) => {
   const router = createBrowserRouter([
@@ -27,6 +28,7 @@ const Router = ({ children }) => {
         { path: '/dashboard', element: <Home /> },
         { path: '/absent', element: <Absent /> },
         { path: '/permit', element: <Permit /> },
+        { path: '/leave', element: <Leave /> },
       ],
     },
   ]);

@@ -73,11 +73,11 @@ const DashboardLayout = () => {
           <IonIcon className="text-2xl" icon={homeOutline}></IonIcon>
           <p>Home</p>
         </div>
-        <div className={style['main-footer-content']}>
-          <IonIcon className="text-2xl" icon={cameraOutline} onClick={() => navigate('/absent')}></IonIcon>
+        <div className={style['main-footer-content']} onClick={() => navigate('/absent')}>
+          <IonIcon className="text-2xl" icon={cameraOutline}></IonIcon>
           <p>Absen</p>
         </div>
-        <div className={style['main-footer-content']}>
+        <div className={style['main-footer-content']} onClick={() => navigate('/leave')}>
           <IonIcon className="text-2xl" icon={calendarOutline}></IonIcon>
           <p>Cuti</p>
         </div>
