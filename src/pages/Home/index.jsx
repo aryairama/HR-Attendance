@@ -78,12 +78,12 @@ const Home = () => {
             <p>Laporan Pekerjaan</p>
           </div>
           <div className={style['list-menu']} onClick={() => window.open('https://www.google.com/', '_blank')}>
-            <IonIcon className={`${style['list-menu-icon']} bg-red-500`} icon={constructOutline}></IonIcon>
+            <IonIcon className={`${style['list-menu-icon']} bg-red-700`} icon={constructOutline}></IonIcon>
             <p>Stock Opname MAC</p>
           </div>
           <div className={style['list-menu']}>
-            <IonIcon className={`${style['list-menu-icon']} bg-[#1DCC70]`} icon={documentTextOutline}></IonIcon>
-            <p>HIstory</p>
+            <IonIcon className={`${style['list-menu-icon']} bg-slate-400`} icon={documentTextOutline}></IonIcon>
+            <p>History</p>
           </div>
         </div>
       </Card>

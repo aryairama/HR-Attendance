@@ -29,7 +29,7 @@ const DashboardLayout = () => {
               <li className="w-6 h-6"></li>
             </ul>
           </div>
-          <a className="flex items-center" onClick={() => navigate('/dashboard')}>
+          <a className="flex items-center cursor-pointer" onClick={() => navigate("/dashboard")}>
             <img src={iconBrand} className="h-8 mr-3" alt="hrattendance-logo" />
           </a>
           <div className="flex items-center ">
@@ -52,7 +52,7 @@ const DashboardLayout = () => {
                 <span className="block text-sm text-gray-900 dark:text-white">
                   {authData.first_name} {authData.last_name}
                 </span>
-                <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
+                <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">{authData.email}</span>
               </div>
               <ul className="py-2" aria-labelledby="user-menu-button">
                 <li>
