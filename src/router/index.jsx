@@ -9,6 +9,7 @@ const Login = lazy(() => import('../pages/Login'));
 const Home = lazy(() => import('../pages/Home'));
 const DashboardLayout = lazy(() => import('../layouts/Dashboard'));
 const Absent = lazy(() => import('../pages/Absent'));
+const Permit = lazy(() => import('../pages/Permit'));
 
 const Router = ({ children }) => {
   const router = createBrowserRouter([
@@ -25,6 +26,7 @@ const Router = ({ children }) => {
       children: [
         { path: '/dashboard', element: <Home /> },
         { path: '/absent', element: <Absent /> },
+        { path: '/permit', element: <Permit /> },
       ],
     },
   ]);
@@ -35,7 +37,7 @@ const Router = ({ children }) => {
           <RouterProvider router={router}>{children}</RouterProvider>
         </Suspense>
       </Provider>
-      <ToastContainer limit={1}/>
+      <ToastContainer limit={1} />
     </>
   );
 };

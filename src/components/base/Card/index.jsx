@@ -65,3 +65,10 @@ export const CardThemeFlexRow = {
     },
   },
 };
+
+export const CardThemeFlexRowWrap = {
+  root: {
+    base: 'flex rounded-lg border border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-800',
+    children: 'flex w-full h-full flex-row flex-wrap items-center p-6 gap-3',
+  },
+};

@@ -10,8 +10,11 @@ import {
 import { datatableReducer, initialDatatable } from '../../redux/reducers/datatableReducer';
 import { useReducer, useEffect } from 'react';
 import { actionGetProducts } from '../../redux/action/dumyApiAction';
+import { Dropdown } from 'flowbite';
+import { useNavigate } from 'react-router-dom';
 
 const useHome = () => {
+  const navigate = useNavigate();
   const columnHelper = createColumnHelper();
   const [listAttendance, setListAttendance] = useReducer(datatableReducer, initialDatatable);
   const columnsListAttendance = [
@@ -67,7 +70,10 @@ const useHome = () => {
       setListAttendance({ type: 'STORE_DATA', payload: { data, pagination } });
     })();
   }, [JSON.stringify(tableListAttendance.getState())]);
-  return { listAttendance, setListAttendance, tableListAttendance };
+  useEffect(() => {
+    new Dropdown(document.getElementById('permit-dropdown'), document.getElementById('permit-menu-button'));
+  }, []);
+  return { listAttendance, setListAttendance, tableListAttendance, navigate };
 };
 
 export default useHome;

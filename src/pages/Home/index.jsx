@@ -12,12 +12,13 @@ import {
   person,
   sad,
   alarm,
+  calendarOutline,
 } from 'ionicons/icons';
 import { CardThemeWithoutGap, CardThemeFlexRow } from '../../components/base/Card';
 import { useHome } from '../../hooks/local';
 
 const Home = () => {
-  const { tableListAttendance, listAttendance } = useHome();
+  const { tableListAttendance, listAttendance, navigate } = useHome();
   return (
     <>
       <Card>
@@ -38,8 +39,30 @@ const Home = () => {
             <p>Absensi</p>
           </div>
           <div className={style['list-menu']}>
-            <IonIcon className={`${style['list-menu-icon']} bg-[#FFB400]`} icon={documentOutline}></IonIcon>
+            <IonIcon
+              id="permit-menu-button"
+              aria-expanded="false"
+              data-dropdown-toggle="permit-dropdown"
+              data-dropdown-placement="bottom"
+              className={`${style['list-menu-icon']} bg-[#FFB400]`}
+              icon={documentOutline}
+            ></IonIcon>
             <p>Izin</p>
+            <div
+              className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow "
+              id="permit-dropdown"
+            >
+              <ul className="py-2" aria-labelledby="user-menu-button">
+                <li className="flex items-center px-3 gap-1 hover:bg-gray-100" onClick={() => navigate('/permit')}>
+                  <IonIcon icon={documentOutline} />
+                  <a className="block px-4 py-2 text-sm text-gray-700">Izin</a>
+                </li>
+                <li className="flex items-center px-3 gap-1 hover:bg-gray-100">
+                  <IonIcon icon={calendarOutline} />
+                  <a className="block px-4 py-2 text-sm text-gray-700 ">Cuti</a>
+                </li>
+              </ul>
+            </div>
           </div>
           <div className={style['list-menu']}>
             <IonIcon className={`${style['list-menu-icon']} bg-[#1b90de]`} icon={timeOutline}></IonIcon>

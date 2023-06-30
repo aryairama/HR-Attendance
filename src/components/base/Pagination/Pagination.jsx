@@ -1,20 +1,19 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import style from './style.module.css';
 import usePagination from './usePagination';
 
-const Index = ({ totalData, pageSize, currentPage, numberOfButtons, setPage, ...props }) => {
+const Index = ({ totalData, pageSize, currentPage, numberOfButtons, setPage }) => {
   const { pagination } = usePagination({ totalData, pageSize, currentPage, numberOfButtons });
   return (
     <ul className={style['pagination']}>
       <li
         className={`${(pagination[0] === currentPage || totalData === 0) && style['disabled']} ${style['next-prev']}`}
-        onClick={() => setPage(currentPage - 2)}
+        onClick={currentPage - 1 < 1 || totalData === 0 ? null : () => setPage(currentPage - 1)}
       >
         Previous
       </li>
       {pagination.map((page, index) => (
-        <li key={index} className={`${currentPage === page && style['active']}`} onClick={() => setPage(page - 1)}>
+        <li key={index} className={`${currentPage === page && style['active']}`} onClick={() => setPage(page)}>
           {page}
         </li>
       ))}
@@ -22,7 +21,7 @@ const Index = ({ totalData, pageSize, currentPage, numberOfButtons, setPage, ...
         className={`${(pagination.reverse()[0] === currentPage || totalData === 0) && style['disabled']} ${
           style['next-prev']
         }`}
-        onClick={() => setPage(currentPage)}
+        onClick={currentPage + 1 > pagination.length || totalData === 0 ? null : () => setPage(currentPage + 1)}
       >
         Next
       </li>

@@ -13,7 +13,7 @@ Button.propTypes = {
   className: PropTypes.string,
   onClick: PropTypes.func,
   children: PropTypes.any.isRequired,
-  schema: PropTypes.oneOf(['pills-purple']).isRequired,
+  schema: PropTypes.oneOf(['pills-purple', 'pills-green', 'pills-yellow']).isRequired,
   size: PropTypes.oneOf(['small']),
 };
 

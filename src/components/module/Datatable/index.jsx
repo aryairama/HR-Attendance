@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import style from './style.module.css';
 import { flexRender } from '@tanstack/react-table';
-import { Pagination } from '../../base';
+import { PaginationDatatable } from '../../base';
 
 const Datatable = ({ table, classNameContainer, totalData }) => {
   useEffect(() => {
@@ -90,7 +90,7 @@ const Datatable = ({ table, classNameContainer, totalData }) => {
         </table>
       </div>
       <div className="my-1 flex justify-end w-full">
-        <Pagination
+        <PaginationDatatable
           totalData={totalData || 0}
           pageSize={table.getState().pagination.pageSize}
           currentPage={table.getState().pagination.pageIndex + 1}
