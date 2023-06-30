@@ -3,14 +3,14 @@ import { Button, Input } from '../../components/base';
 import { useLogin } from '../../hooks/local';
 
 const Index = () => {
-  const { Formik, Form, formLogin } = useLogin();
+  const { Formik, Form, formLogin, handlerSubmit } = useLogin();
   return (
     <Formik
       enableReinitialize={true}
       initialValues={formLogin}
       validateOnBlur={true}
       validateOnChange={true}
-      onSubmit={(values, formik) => console.log(values, formik)}
+      onSubmit={(values, formik) => handlerSubmit(values, formik)}
     >
       {({ handleSubmit }) => (
         <Form onSubmit={handleSubmit}>
@@ -18,7 +18,7 @@ const Index = () => {
             <h1 className={style['form-login-header']}>Masuk</h1>
             <h4 className={style['form-login-description']}>Isi formulir untuk masuk</h4>
             <div className={style['form-login-card']}>
-              <Input errorLabelEffect={true} name="email" id="email" label="E-Mail" placeholder="E-Mail Anda" />
+              <Input errorLabelEffect={true} name="identity" id="identity" label="E-Mail" placeholder="E-Mail Anda" />
               <Input
                 errorLabelEffect={true}
                 type="password"

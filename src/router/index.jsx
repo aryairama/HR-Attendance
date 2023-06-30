@@ -4,6 +4,8 @@ import { Suspense, lazy } from 'react';
 import { Provider } from 'react-redux';
 import store from '../redux/store';
 import { ToastContainer } from 'react-toastify';
+import { Loader } from '../components/base';
+import { authLogin, authDashbaord } from '../redux/action/AuthAction';
 import 'react-toastify/dist/ReactToastify.css';
 const Login = lazy(() => import('../pages/Login'));
 const Home = lazy(() => import('../pages/Home'));
@@ -22,9 +24,11 @@ const Router = ({ children }) => {
     {
       path: '/login',
       element: <Login />,
+      loader: authLogin,
     },
     {
       element: <DashboardLayout />,
+      loader: authDashbaord,
       children: [
         { path: '/dashboard', element: <Home /> },
         { path: '/absent', element: <Absent /> },
@@ -37,11 +41,12 @@ const Router = ({ children }) => {
   return (
     <>
       <Provider store={store}>
-        <Suspense fallback={<>Loading</>}>
+        <Suspense fallback={<Loader show={true} />}>
           <RouterProvider router={router}>{children}</RouterProvider>
         </Suspense>
+        <Loader />
       </Provider>
-      <ToastContainer limit={1} />
+      <ToastContainer />
     </>
   );
 };

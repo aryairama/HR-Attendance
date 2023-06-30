@@ -6,9 +6,10 @@ import { useEffect } from 'react';
 import iconBrand from '../../assets/icons/hrattendance.png';
 import { IonIcon } from '@ionic/react';
 import { homeOutline, cameraOutline, calendarOutline, documentTextOutline, personOutline } from 'ionicons/icons';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLoaderData } from 'react-router-dom';
 
 const DashboardLayout = () => {
+  const authData = useLoaderData();
   const navigate = useNavigate();
   useEffect(() => {
     new Dropdown(document.getElementById('user-dropdown'), document.getElementById('user-menu-button'));
@@ -43,7 +44,9 @@ const DashboardLayout = () => {
               id="user-dropdown"
             >
               <div className="px-4 py-3">
-                <span className="block text-sm text-gray-900 dark:text-white">Bonnie Green</span>
+                <span className="block text-sm text-gray-900 dark:text-white">
+                  {authData.first_name} {authData.last_name}
+                </span>
                 <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
               </div>
               <ul className="py-2" aria-labelledby="user-menu-button">
