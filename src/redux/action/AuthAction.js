@@ -11,7 +11,11 @@ export const login = async (values, formik, navigate) => {
     localStorage.setItem('access_token', data.access_token);
     navigate('/dashboard');
   } catch (error) {
-    toast.error('Terjadi kesalahan, silahkan coba lagi!');
+    if (error.response.status >= 400 && error.response.status < 500) {
+      toast.warn(error.response.data.data.message);
+    } else {
+      toast.error('Terjadi kesalahan, silahkan coba lagi!');
+    }
   }
   store.dispatch(HIDDEN_LOADER());
 };
