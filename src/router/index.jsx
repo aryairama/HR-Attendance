@@ -11,6 +11,7 @@ const DashboardLayout = lazy(() => import('../layouts/Dashboard'));
 const Absent = lazy(() => import('../pages/Absent'));
 const Permit = lazy(() => import('../pages/Permit'));
 const Leave = lazy(() => import('../pages/Leave'));
+const Overtime = lazy(() => import('../pages/Overtime'));
 
 const Router = ({ children }) => {
   const router = createBrowserRouter([
@@ -29,6 +30,7 @@ const Router = ({ children }) => {
         { path: '/absent', element: <Absent /> },
         { path: '/permit', element: <Permit /> },
         { path: '/leave', element: <Leave /> },
+        { path: '/overtime', element: <Overtime /> },
       ],
     },
   ]);

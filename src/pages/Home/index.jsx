@@ -13,6 +13,7 @@ import {
   sad,
   alarm,
   calendarOutline,
+  constructOutline,
 } from 'ionicons/icons';
 import { CardThemeWithoutGap, CardThemeFlexRow } from '../../components/base/Card';
 import { useHome } from '../../hooks/local';
@@ -34,7 +35,7 @@ const Home = () => {
         </div>
         <Card.Divider></Card.Divider>
         <div className={style['list-menu-layout']}>
-          <div className={style['list-menu']}>
+          <div className={style['list-menu']} onClick={() => navigate('/absent')}>
             <IonIcon className={`${style['list-menu-icon']} bg-[#1b90de]`} icon={cameraOutline}></IonIcon>
             <p>Absensi</p>
           </div>
@@ -64,13 +65,17 @@ const Home = () => {
               </ul>
             </div>
           </div>
-          <div className={style['list-menu']}>
+          <div className={style['list-menu']} onClick={() => navigate('/overtime')}>
             <IonIcon className={`${style['list-menu-icon']} bg-[#1b90de]`} icon={timeOutline}></IonIcon>
             <p>Lembur</p>
           </div>
           <div className={style['list-menu']}>
             <IonIcon className={`${style['list-menu-icon']} bg-[#754AED]`} icon={analyticsOutline}></IonIcon>
             <p>Laporan Pekerjaan</p>
+          </div>
+          <div className={style['list-menu']} onClick={() => window.open('https://www.google.com/', '_blank')}>
+            <IonIcon className={`${style['list-menu-icon']} bg-red-500`} icon={constructOutline}></IonIcon>
+            <p>Stock Opname MAC</p>
           </div>
           <div className={style['list-menu']}>
             <IonIcon className={`${style['list-menu-icon']} bg-[#1DCC70]`} icon={documentTextOutline}></IonIcon>
