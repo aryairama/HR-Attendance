@@ -29,7 +29,7 @@ const DashboardLayout = () => {
               <li className="w-6 h-6"></li>
             </ul>
           </div>
-          <a className="flex items-center ">
+          <a className="flex items-center" onClick={() => navigate('/dashboard')}>
             <img src={iconBrand} className="h-8 mr-3" alt="hrattendance-logo" />
           </a>
           <div className="flex items-center ">
