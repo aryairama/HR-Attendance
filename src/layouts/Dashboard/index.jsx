@@ -7,6 +7,7 @@ import iconBrand from '../../assets/icons/hrattendance.png';
 import { IonIcon } from '@ionic/react';
 import { homeOutline, cameraOutline, calendarOutline, documentTextOutline, personOutline } from 'ionicons/icons';
 import { useNavigate, useLoaderData } from 'react-router-dom';
+import iconUser from '../../assets/icons/default-profile.png';
 
 const DashboardLayout = () => {
   const authData = useLoaderData();
@@ -30,14 +31,14 @@ const DashboardLayout = () => {
           <div className="flex items-center ">
             <button
               type="button"
-              className="flex mr-3 text-sm bg-gray-800 rounded-md md:mr-0 "
+              className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 "
               id="user-menu-button"
               aria-expanded="false"
               data-dropdown-toggle="user-dropdown"
               data-dropdown-placement="bottom"
             >
               <span className="sr-only">Open user menu</span>
-              <img className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="user photo" />
+              <img className="w-8 h-8 rounded-full" src={iconUser} alt="user photo" />
             </button>
             <div
               className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow "

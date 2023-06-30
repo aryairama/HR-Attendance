@@ -25,7 +25,8 @@ const Absent = () => {
           </div>
         </div>
         <p className="w-full text-black text-center">
-          Lat-Long:{latLong.lat},{latLong.long}
+          Lat-Long:{latLong.lat},{latLong.long} <br />
+          {accessAbsent.radius ? 'Dalam Jangkauan' : 'Diluar Jangkauan'}
         </p>
         <Card.Divider />
         <Webcam
