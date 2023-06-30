@@ -42,7 +42,7 @@ const useAbsent = () => {
     });
   };
   const checkPermission = async () => {
-    navigator.geolocation.watchPosition(
+    navigator.geolocation.getCurrentPosition(
       function (position) {
         setLatLong({ lat: position.coords.latitude, long: position.coords.longitude });
         setAccessAbsent((oldVal) => ({ ...oldVal, location: true }));
@@ -66,8 +66,8 @@ const useAbsent = () => {
     absent({ file, ...latLong, attendance }, navigate);
   };
   useEffect(() => {
-    checkPermission();
     let timeInterval = setInterval(() => {
+      checkPermission();
       setTime(new Date());
     }, 1000);
     return () => {
