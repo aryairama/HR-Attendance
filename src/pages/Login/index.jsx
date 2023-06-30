@@ -27,13 +27,12 @@ const Index = () => {
                 label="Password"
                 placeholder="Kata Sandi Anda"
               />
+              <Button className="!mb-0 mt-3" size="small" schema="pills-purple" type="submit">
+                Sign in
+              </Button>
             </div>
           </div>
-          <div className={style['container-form-button-login']}>
-            <Button className="!mb-0" size="small" schema="pills-purple" type="submit">
-              Sign in
-            </Button>
-          </div>
+          {/* <div className={style['container-form-button-login']}></div> */}
         </Form>
       )}
     </Formik>
