@@ -12,6 +12,10 @@ import iconUser from '../../assets/icons/default-profile.png';
 const DashboardLayout = () => {
   const authData = useLoaderData();
   const navigate = useNavigate();
+  const handlerLogout = () => {
+    localStorage.removeItem('access_token');
+    navigate('/login');
+  };
   useEffect(() => {
     new Dropdown(document.getElementById('user-dropdown'), document.getElementById('user-menu-button'));
   }, []);
@@ -57,7 +61,10 @@ const DashboardLayout = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ">
+                  <a
+                    onClick={handlerLogout}
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                  >
                     Keluar
                   </a>
                 </li>

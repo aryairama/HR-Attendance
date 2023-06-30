@@ -16,7 +16,7 @@ export const absent = async (values, navigate) => {
     toast.success(data.message, { onClose: () => window.location.replace('/dashboard'), autoClose: 2000 });
   } catch (error) {
     if (error.response.status >= 400 && error.response.status < 500) {
-      toast.warn(error.response.data.data.message);
+      toast.warn(error.response.data?.data?.message || error.response?.data?.message);
     } else {
       toast.error('Terjadi kesalahan, silahkan coba lagi!');
     }
