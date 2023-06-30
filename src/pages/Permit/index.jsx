@@ -7,8 +7,20 @@ import { ModalDialog } from '../../components/module';
 import { createPortal } from 'react-dom';
 
 const Permit = () => {
-  const { listPermit, modalAddForm, setModalAddForm, handlerCloseModal, Form, Formik, formPermit, handlerFile } =
-    usePermit();
+  const {
+    listPermit,
+    modalAddForm,
+    setModalAddForm,
+    handlerCloseModal,
+    Form,
+    Formik,
+    formPermit,
+    handlerFile,
+    filter,
+    setFilter,
+    refFormik,
+    handlerSubmit,
+  } = usePermit();
   return (
     <>
       <Card theme={CardThemeFlexRowWrap}>
@@ -49,17 +61,17 @@ const Permit = () => {
           >
             <div className="flex flex-col flex-wrap">
               <p className="text-xs flex items-center gap-2 text-white mb-2">
-                <span className="bg-green-700 rounded-md p-1">{value.name}</span>{' '}
-                <span className="bg-purple-700 rounded-md p-1 ">{value.brand}</span>
+                <span className="bg-green-700 rounded-md p-1">{value.name}</span>
+                <span className="bg-purple-700 rounded-md p-1 ">Berkas</span>
               </p>
               <p className="text-xs text-gray-600 mb-[1px]">
-                <IonIcon icon={calendarOutline} /> Mulai : {value.created_at}
+                <IonIcon icon={calendarOutline} /> Mulai : {value.start_date}
               </p>
               <p className="text-xs text-gray-600 mb-[1px]">
-                <IonIcon icon={calendarOutline} /> Selesai : {value.created_at}
+                <IonIcon icon={calendarOutline} /> Selesai : {value.end_date}
               </p>
               <p className="text-xs text-gray-600 mb-[1px]">
-                <IonIcon icon={chatbubbleOutline} /> Status : {value.product_status}
+                <IonIcon icon={chatbubbleOutline} /> Status : {value.approval_status}
               </p>
               <p className="text-xs text-gray-600 mb-[1px]">
                 <IonIcon icon={chatbubbleOutline} /> {value.description}
@@ -70,9 +82,10 @@ const Permit = () => {
         <div className="ml-auto">
           <Pagination
             numberOfButtons={5}
-            totalData={listPermit.pagination.countData || 0}
-            pageSize={5}
-            currentPage={1}
+            totalData={listPermit.pagination.total || 0}
+            pageSize={10}
+            currentPage={filter.page}
+            setPage={(e) => setFilter((old) => ({ ...old, page: e }))}
           />
         </div>
       </Card>
@@ -85,11 +98,12 @@ const Permit = () => {
         >
           <p className="text-lg font-bold w-full">Tambah Pengajuan Izin</p>
           <Formik
+            innerRef={refFormik}
             enableReinitialize={true}
             initialValues={formPermit}
             validateOnBlur={true}
             validateOnChange={true}
-            onSubmit={(values, formik) => console.log(values, formik)}
+            onSubmit={(values, formik) => handlerSubmit(values, formik)}
           >
             {(formik) => (
               <Form className="mt-5" onSubmit={formik.handleSubmit}>
@@ -98,10 +112,12 @@ const Permit = () => {
                 <Input name="end_date" id="end_date" label="Tanggal Akhir" type="date" />
                 <InputFile
                   label="Tanda Terima Invoice"
-                  id="file"
-                  name="file"
+                  id="document"
+                  name="document"
                   accept="image/jpeg, image/jpg, image/png, application/pdf"
-                  namefile={formik.values.file?.name ? formik.values.file?.name : 'File type: jpg, jpeg, png, dan pdf.'}
+                  namefile={
+                    formik.values.document?.name ? formik.values.document?.name : 'File type: jpg, jpeg, png, dan pdf.'
+                  }
                   onChange={(e) => handlerFile(e, formik)}
                 />
                 <Input name="description" id="description" label="Keterangan" />
