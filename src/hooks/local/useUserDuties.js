@@ -1,4 +1,4 @@
-import { userDutiesAreas, userDutiesAreasFilter } from '../../redux/action/UserDuties';
+import { userDutiesAreas, userDutiesAreasFilter, userDutiesChecklist } from '../../redux/action/UserDuties';
 import { useEffect, useState, useReducer } from 'react';
 import { datatableReducer, initialDatatable } from '../../redux/reducers/datatableReducer';
 import {
@@ -8,13 +8,43 @@ import {
   getSortedRowModel,
   getFilteredRowModel,
 } from '@tanstack/react-table';
+import { DatatableCheckbox } from '../../components/module';
 
 const useUserDuties = () => {
+  const [reload, setReload] = useState(false);
   const [dutiesAreas, setDutiesAreas] = useState([]);
   const [selectedArea, setSelectedArea] = useState();
   const columnHelper = createColumnHelper();
   const [listuserDutiesAreasFilter, setListuserDutiesAreasFilter] = useReducer(datatableReducer, initialDatatable);
   const columnsListuserDutiesAreasFilter = [
+    columnHelper.accessor('select', {
+      id: 'select',
+      header: ({ table }) => (
+        <DatatableCheckbox
+          className="ml-1"
+          {...{
+            checked: table.getIsAllRowsSelected(),
+            indeterminate: table.getIsSomeRowsSelected(),
+            onChange: table.getToggleAllRowsSelectedHandler(),
+          }}
+        />
+      ),
+      cell: ({ row }) => (
+        <div className="px-1">
+          {row.original.status === 'unexecuted' ? (
+            <DatatableCheckbox
+              {...{
+                checked: row.getIsSelected(),
+                disabled: !row.getCanSelect(),
+                indeterminate: row.getIsSomeSelected(),
+                onChange: row.getToggleSelectedHandler(),
+              }}
+            />
+          ) : null}
+        </div>
+      ),
+      enableSorting: false,
+    }),
     columnHelper.accessor('duty_name', {
       id: 'duty_name',
       header: 'Pekerjaan',
@@ -30,6 +60,13 @@ const useUserDuties = () => {
     manualSorting: true,
     getRowId: (row) => row.id,
   });
+  const handlerSubmit = () => {
+    const ids = [];
+    Object.keys(tableListuserDutiesAreasFilter.getState().rowSelection).forEach((key) => {
+      ids.push(key);
+    });
+    userDutiesChecklist(ids, null, setReload);
+  };
   useEffect(() => {
     (async () => {
       const areas = await userDutiesAreas();
@@ -44,8 +81,8 @@ const useUserDuties = () => {
         setListuserDutiesAreasFilter({ type: 'STORE_DATA', payload: { data, pagination: {} } });
       }
     })();
-  }, [selectedArea]);
-  return { dutiesAreas, setDutiesAreas, selectedArea, setSelectedArea, tableListuserDutiesAreasFilter };
+  }, [selectedArea, reload]);
+  return { dutiesAreas, setDutiesAreas, selectedArea, setSelectedArea, tableListuserDutiesAreasFilter, handlerSubmit };
 };
 
 export default useUserDuties;

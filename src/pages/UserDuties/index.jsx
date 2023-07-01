@@ -1,11 +1,11 @@
-import { Card } from '../../components/base';
+import { Card, Button } from '../../components/base';
 import { CardThemeFlexRowWrap } from '../../components/base/Card';
 import styleHome from '../Home/style.module.css';
 import { useUserDuties } from '../../hooks/local';
 import { Datatable } from '../../components/module';
 
 const UserDuties = () => {
-  const { dutiesAreas, selectedArea, setSelectedArea, tableListuserDutiesAreasFilter } = useUserDuties();
+  const { dutiesAreas, selectedArea, setSelectedArea, tableListuserDutiesAreasFilter, handlerSubmit } = useUserDuties();
   return (
     <>
       <Card theme={CardThemeFlexRowWrap}>
@@ -27,6 +27,11 @@ const UserDuties = () => {
           </select>
         </div>
         <Datatable classNameContainer="border shadow-md" pagination={false} table={tableListuserDutiesAreasFilter} />
+        {Object.keys(tableListuserDutiesAreasFilter.getState().rowSelection).length > 0 && (
+          <Button onClick={handlerSubmit} className="!mb-0 !w-fit mx-auto" size="small" schema="pills-purple">
+            Simpan
+          </Button>
+        )}
       </Card>
     </>
   );
