@@ -49,7 +49,7 @@ const Absent = () => {
                 <Button
                   disabled={accessAbsent.camera && accessAbsent.location && accessAbsent.radius ? false : true}
                   onClick={() => submitAbsent(getScreenshot, 'clock_in')}
-                  className="!mb-0 !w-fit mx-auto disabled:bg-gray-400"
+                  className="!mb-0 !w-fit mx-auto hover:disabled:bg-gray-400 disabled:bg-gray-400"
                   size="small"
                   schema="pills-purple"
                 >
@@ -63,7 +63,7 @@ const Absent = () => {
                 <Button
                   disabled={accessAbsent.camera && accessAbsent.location && accessAbsent.radius ? false : true}
                   onClick={() => submitAbsent(getScreenshot, 'clock_out')}
-                  className="!mb-0 !w-fit mx-auto disabled:bg-gray-400"
+                  className="!mb-0 !w-fit mx-auto hover:disabled:bg-gray-400 disabled:bg-gray-400"
                   size="small"
                   schema="pills-purple"
                 >
