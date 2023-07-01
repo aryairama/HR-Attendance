@@ -6,9 +6,9 @@ import style from './style.module.css';
 import { flexRender } from '@tanstack/react-table';
 import { PaginationDatatable } from '../../base';
 
-const Datatable = ({ table, classNameContainer, totalData }) => {
+const Datatable = ({ table, classNameContainer, totalData, pagination }) => {
   useEffect(() => {
-    table.setPageIndex(0);
+    if (pagination) table.setPageIndex(0);
   }, [table.getState().globalFilter]);
   return (
     <>
@@ -89,15 +89,17 @@ const Datatable = ({ table, classNameContainer, totalData }) => {
         </tfoot> */}
         </table>
       </div>
-      <div className="my-1 flex justify-end w-full">
-        <PaginationDatatable
-          totalData={totalData || 0}
-          pageSize={table.getState().pagination.pageSize}
-          currentPage={table.getState().pagination.pageIndex + 1}
-          numberOfButtons={5}
-          setPage={table.setPageIndex}
-        />
-      </div>
+      {pagination && (
+        <div className="my-1 flex justify-end w-full">
+          <PaginationDatatable
+            totalData={totalData || 0}
+            pageSize={table.getState().pagination.pageSize}
+            currentPage={table.getState().pagination.pageIndex + 1}
+            numberOfButtons={5}
+            setPage={table.setPageIndex}
+          />
+        </div>
+      )}
     </>
   );
 };
@@ -105,7 +107,7 @@ const Datatable = ({ table, classNameContainer, totalData }) => {
 Datatable.propTypes = {
   table: PropTypes.object.isRequired,
   classNameContainer: PropTypes.string,
-  totalData: PropTypes.number.isRequired,
+  totalData: PropTypes.number,
   pagination: PropTypes.bool,
 };
 
