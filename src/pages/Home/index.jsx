@@ -73,7 +73,7 @@ const Home = () => {
             <IonIcon className={`${style['list-menu-icon']} bg-[#1b90de]`} icon={timeOutline}></IonIcon>
             <p>Lembur</p>
           </div>
-          <div className={style['list-menu']}>
+          <div className={style['list-menu']} onClick={() => navigate('/user-duties')}>
             <IonIcon className={`${style['list-menu-icon']} bg-[#754AED]`} icon={analyticsOutline}></IonIcon>
             <p>Laporan Pekerjaan</p>
           </div>
