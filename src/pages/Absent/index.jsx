@@ -73,6 +73,9 @@ const Absent = () => {
                   </div>
                 </Button>
               )}
+              {authData.attendance.clock_in && authData.attendance.clock_out && (
+                <p className="mx-auto font-bold uppercase text-red-700">Anda sudah melakukan Clock In dan Clock Out</p>
+              )}
             </>
           )}
         </Webcam>
