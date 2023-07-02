@@ -17,6 +17,7 @@ const jsonParse = (envValue, defaultValue, parse = true) => {
 const env = () => {
   return {
     BACKEND_API_URL: jsonParse(import.meta.env.VITE_APP_API_URL, '', false),
+    EDIT_FEATURE: jsonParse(import.meta.env.VITE_APP_EDIT_FEATURE, false, false),
   };
 };
 export default env;

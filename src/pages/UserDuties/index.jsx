@@ -5,6 +5,7 @@ import { useUserDuties } from '../../hooks/local';
 import { Datatable } from '../../components/module';
 import { IonIcon } from '@ionic/react';
 import { time } from 'ionicons/icons';
+import { Fragment } from 'react';
 
 const UserDuties = () => {
   const {
@@ -44,13 +45,17 @@ const UserDuties = () => {
             <p className="font-bold w-full -mb-2">Daftar berkas terunggah</p>
             <ul className="w-full list-disc ml-4 text-blue-500">
               {currentDocument?.map((value, index) => (
-                <li
-                  className="cursor-pointer"
-                  onClick={() => window.open(value.original_url, '_blank').focus()}
-                  key={index}
-                >
-                  {value.file_name}
-                </li>
+                <Fragment key={index}>
+                  {value.collection_name === 'user-duty-document' && (
+                    <li
+                      className="cursor-pointer"
+                      onClick={() => window.open(value.original_url, '_blank').focus()}
+                      key={index}
+                    >
+                      {value.file_name}
+                    </li>
+                  )}
+                </Fragment>
               ))}
             </ul>
           </>

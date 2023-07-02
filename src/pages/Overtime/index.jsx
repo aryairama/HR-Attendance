@@ -16,6 +16,7 @@ import {
 import { IonIcon } from '@ionic/react';
 import { createPortal } from 'react-dom';
 import { ModalDialog } from '../../components/module';
+import env from '../../config/env';
 
 const Overtime = () => {
   const {
@@ -104,11 +105,13 @@ const Overtime = () => {
                 <IonIcon icon={chatbubbleOutline} /> {value.description}
               </p>
             </div>
-            <IonIcon
-              onClick={() => handlerEditForm(value.id)}
-              className="bg-yellow-400 text-white p-1 rounded-md cursor-pointer"
-              icon={pencilOutline}
-            />
+            {env().EDIT_FEATURE && (
+              <IonIcon
+                onClick={() => handlerEditForm(value.id)}
+                className="bg-yellow-400 text-white p-1 rounded-md cursor-pointer"
+                icon={pencilOutline}
+              />
+            )}
           </Card>
         ))}
         <div className="ml-auto">

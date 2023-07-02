@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { userDutiesAreas, userDutiesAreasFilter, userDutiesChecklist } from '../../redux/action/UserDuties';
 import { useEffect, useState, useReducer } from 'react';
 import { datatableReducer, initialDatatable } from '../../redux/reducers/datatableReducer';
@@ -99,6 +100,8 @@ const useUserDuties = () => {
         setListuserDutiesAreasFilter({ type: 'STORE_DATA', payload: { data: data[0].user_duties, pagination: {} } });
         setCurrentDocument(data[0].documents);
         setUserDutyAreaId(data[0].user_duty_area_id);
+        tableListuserDutiesAreasFilter.setRowSelection({});
+        setDocument([]);
       }
     })();
   }, [selectedArea, reload]);
