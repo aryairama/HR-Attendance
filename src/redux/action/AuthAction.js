@@ -2,7 +2,7 @@
 import store from '../store';
 import { HIDDEN_LOADER, SHOW_LOADER } from '../reducers/loaderReducer';
 import { toast } from 'react-toastify';
-import axios from '../../config/axios';
+import axios, { customAxiosWithoutInterceptors } from '../../config/axios';
 
 export const login = async (values, formik, navigate) => {
   store.dispatch(SHOW_LOADER());
@@ -22,7 +22,7 @@ export const login = async (values, formik, navigate) => {
 
 export const authLogin = async () => {
   try {
-    const { data } = await (await axios().get('/auth/me')).data;
+    const { data } = await (await customAxiosWithoutInterceptors().get('/auth/me')).data;
     window.location.replace('/dashboard');
     return data;
   } catch (error) {
@@ -33,7 +33,7 @@ export const authLogin = async () => {
 
 export const authDashbaord = async () => {
   try {
-    const { data } = await (await axios().get('/auth/me')).data;
+    const { data } = await (await customAxiosWithoutInterceptors().get('/auth/me')).data;
     return data;
   } catch (error) {
     localStorage.removeItem('access_token');
