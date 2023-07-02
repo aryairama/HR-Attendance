@@ -15,6 +15,7 @@ const Permit = lazy(() => import('../pages/Permit'));
 const Leave = lazy(() => import('../pages/Leave'));
 const Overtime = lazy(() => import('../pages/Overtime'));
 const UserDuties = lazy(() => import('../pages/UserDuties'));
+const History = lazy(() => import('../pages/History'));
 
 const Router = ({ children }) => {
   const router = createBrowserRouter([
@@ -37,6 +38,10 @@ const Router = ({ children }) => {
         { path: '/leave', element: <Leave /> },
         { path: '/overtime', element: <Overtime /> },
         { path: '/user-duties', element: <UserDuties /> },
+        {
+          path: '/history',
+          element: <History />,
+        },
       ],
     },
   ]);

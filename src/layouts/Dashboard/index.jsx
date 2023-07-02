@@ -29,7 +29,7 @@ const DashboardLayout = () => {
               <li className="w-6 h-6"></li>
             </ul>
           </div>
-          <a className="flex items-center cursor-pointer" onClick={() => navigate("/dashboard")}>
+          <a className="flex items-center cursor-pointer" onClick={() => navigate('/dashboard')}>
             <img src={iconBrand} className="h-8 mr-3" alt="hrattendance-logo" />
           </a>
           <div className="flex items-center ">
@@ -92,7 +92,7 @@ const DashboardLayout = () => {
           <IonIcon className="text-2xl" icon={calendarOutline}></IonIcon>
           <p>Cuti</p>
         </div>
-        <div className={style['main-footer-content']}>
+        <div className={style['main-footer-content']} onClick={() => navigate('/history')}>
           <IonIcon className="text-2xl" icon={documentTextOutline}></IonIcon>
           <p>History</p>
         </div>

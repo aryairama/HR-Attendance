@@ -8,12 +8,21 @@ import {
   getPaginationRowModel,
 } from '@tanstack/react-table';
 import { datatableReducer, initialDatatable } from '../../redux/reducers/datatableReducer';
-import { useReducer, useEffect } from 'react';
+import { useReducer, useEffect, useState } from 'react';
 import { actionGetProducts } from '../../redux/action/dumyApiAction';
 import { Dropdown } from 'flowbite';
 import { useNavigate, useOutletContext } from 'react-router-dom';
+import { historySummary } from '../../redux/action/HistoryAction';
 
 const useHome = () => {
+  const [absentSummary, setAbsentSummary] = useState({
+    late: 0,
+    attend: 0,
+    unattend: 0,
+    sick: 0,
+    permit: 0,
+    leave: 0,
+  });
   const [authData] = useOutletContext();
   const navigate = useNavigate();
   const columnHelper = createColumnHelper();
@@ -74,7 +83,21 @@ const useHome = () => {
   useEffect(() => {
     new Dropdown(document.getElementById('permit-dropdown'), document.getElementById('permit-menu-button'));
   }, []);
-  return { listAttendance, setListAttendance, tableListAttendance, navigate, authData };
+  useEffect(() => {
+    (async () => {
+      const data = await historySummary();
+      setAbsentSummary((oldVal) => ({ ...oldVal, ...data }));
+    })();
+  }, []);
+  return {
+    listAttendance,
+    setListAttendance,
+    tableListAttendance,
+    navigate,
+    authData,
+    absentSummary,
+    setAbsentSummary,
+  };
 };
 
 export default useHome;

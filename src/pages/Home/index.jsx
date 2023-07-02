@@ -11,7 +11,7 @@ import {
   logIn,
   person,
   sad,
-  alarm,
+  home,
   calendarOutline,
   constructOutline,
 } from 'ionicons/icons';
@@ -19,7 +19,7 @@ import { CardThemeWithoutGap, CardThemeFlexRow } from '../../components/base/Car
 import { useHome } from '../../hooks/local';
 
 const Home = () => {
-  const { tableListAttendance, listAttendance, navigate, authData } = useHome();
+  const { tableListAttendance, listAttendance, navigate, authData, absentSummary } = useHome();
   return (
     <>
       <Card>
@@ -81,20 +81,30 @@ const Home = () => {
             <IonIcon className={`${style['list-menu-icon']} bg-red-700`} icon={constructOutline}></IonIcon>
             <p>Stock Opname MAC</p>
           </div>
-          <div className={style['list-menu']}>
+          <div className={style['list-menu']} onClick={() => navigate('/history')}>
             <IonIcon className={`${style['list-menu-icon']} bg-slate-400`} icon={documentTextOutline}></IonIcon>
             <p>History</p>
           </div>
         </div>
       </Card>
       <div className={style['status-attendance-layout']}>
-        <Card theme={CardThemeWithoutGap} className={`${style['status-attendance-card']} ${authData.attendance.clock_in ? 'bg-green-500' : 'bg-gray-700'}`}>
+        <Card
+          theme={CardThemeWithoutGap}
+          className={`${style['status-attendance-card']} ${
+            authData.attendance.clock_in ? 'bg-green-500' : 'bg-gray-700'
+          }`}
+        >
           <p className={style['status-attendance-card-label']}>Absen Masuk</p>
           <p className={style['status-attendance-card-value']}>
             {authData.attendance.clock_in ? 'Hadir' : 'Belum Clock In'}
           </p>
         </Card>
-        <Card theme={CardThemeWithoutGap} className={`${style['status-attendance-card']} ${authData.attendance.clock_out ? 'bg-green-500' : 'bg-gray-700'}`}>
+        <Card
+          theme={CardThemeWithoutGap}
+          className={`${style['status-attendance-card']} ${
+            authData.attendance.clock_out ? 'bg-green-500' : 'bg-gray-700'
+          }`}
+        >
           <p className={style['status-attendance-card-label']}>Absen Pulang</p>
           <p className={style['status-attendance-card-value']}>
             {authData.attendance.clock_out ? 'Sudah Absen' : 'Belum Clock Out'}
@@ -110,7 +120,9 @@ const Home = () => {
           <option value="04">April</option>
           <option value="05">Mei</option>
           <option value="06">Juni</option>
-          <option value="07" selected>Juli</option>
+          <option value="07" selected>
+            Juli
+          </option>
           <option value="08">Agustus</option>
           <option value="09">September</option>
           <option value="10">Oktober</option>
@@ -124,28 +136,28 @@ const Home = () => {
           <IonIcon className="text-[25px] text-green-500" icon={logIn}></IonIcon>
           <div className={style['latest-attendance-filter-indicator-card-value-layout']}>
             <p className={style['latest-attendance-filter-indicator-card-label']}>Hadir</p>
-            <p className={style['latest-attendance-filter-indicator-card-value']}>0 Hari</p>
+            <p className={style['latest-attendance-filter-indicator-card-value']}>{absentSummary?.attend || 0} Hari</p>
           </div>
         </Card>
         <Card theme={CardThemeFlexRow} className={style['latest-attendance-filter-indicator-card']}>
           <IonIcon className="text-[25px] text-red-500" icon={person}></IonIcon>
           <div className={style['latest-attendance-filter-indicator-card-value-layout']}>
             <p className={style['latest-attendance-filter-indicator-card-label']}>Telat</p>
-            <p className={style['latest-attendance-filter-indicator-card-value']}>0 Hari</p>
+            <p className={style['latest-attendance-filter-indicator-card-value']}>{absentSummary?.late || 0} Hari</p>
           </div>
         </Card>
         <Card theme={CardThemeFlexRow} className={style['latest-attendance-filter-indicator-card']}>
           <IonIcon className="text-[25px] text-blue-300" icon={sad}></IonIcon>
           <div className={style['latest-attendance-filter-indicator-card-value-layout']}>
             <p className={style['latest-attendance-filter-indicator-card-label']}>Sakit</p>
-            <p className={style['latest-attendance-filter-indicator-card-value']}>0 Hari</p>
+            <p className={style['latest-attendance-filter-indicator-card-value']}>{absentSummary?.sick || 0} Hari</p>
           </div>
         </Card>
         <Card theme={CardThemeFlexRow} className={style['latest-attendance-filter-indicator-card']}>
-          <IonIcon className="text-[25px] text-yellow-400" icon={alarm}></IonIcon>
+          <IonIcon className="text-[25px] text-yellow-400" icon={home}></IonIcon>
           <div className={style['latest-attendance-filter-indicator-card-value-layout']}>
             <p className={style['latest-attendance-filter-indicator-card-label']}>Cuti</p>
-            <p className={style['latest-attendance-filter-indicator-card-value']}>0 Hari</p>
+            <p className={style['latest-attendance-filter-indicator-card-value']}>{absentSummary?.leave || 0} Hari</p>
           </div>
         </Card>
       </div>
