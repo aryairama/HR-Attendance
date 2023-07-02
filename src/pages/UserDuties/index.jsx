@@ -30,7 +30,7 @@ const UserDuties = () => {
             name="month"
             id="month"
           >
-            <option value="">Pilih Area</option>
+            {(selectedArea === undefined || selectedArea === '') && <option value="">Pilih Area</option>}
             {dutiesAreas.map((value, index) => (
               <option key={index} value={value.area_id}>
                 {value.area_name}

@@ -92,7 +92,7 @@ const useUserDuties = () => {
   }, []);
   useEffect(() => {
     (async () => {
-      if (selectedArea !== undefined) {
+      if (selectedArea !== undefined && selectedArea !== '') {
         setListuserDutiesAreasFilter({ type: 'FETCH_DATA' });
         const data = await userDutiesAreasFilter(selectedArea);
         setListuserDutiesAreasFilter({ type: 'STORE_DATA', payload: { data: data[0].user_duties, pagination: {} } });
