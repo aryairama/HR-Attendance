@@ -24,7 +24,8 @@ const Absent = () => {
             </div>
           </div>
         </div>
-        <p className="w-full text-black text-center">
+        <p className="w-full text-black text-center -mb-4 font-bold">{authData.assignment.place}</p>
+        <p className="w-full text-black text-center text-sm">
           Lat-Long:{latLong.lat},{latLong.long} <br />
           {accessAbsent.radius ? 'Dalam Jangkauan' : 'Diluar Jangkauan'}
         </p>
@@ -32,9 +33,9 @@ const Absent = () => {
         <Webcam
           className="mx-auto -scale-x-[1]"
           audio={false}
-          height={500}
+          height={400}
           screenshotFormat="image/jpeg"
-          width={500}
+          width={360}
           videoConstraints={{
             facingMode: 'selfie',
             mirrored: true,
