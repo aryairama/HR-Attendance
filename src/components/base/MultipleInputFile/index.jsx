@@ -66,10 +66,19 @@ const MultipleInputFile = ({
   );
 };
 
-MultipleInputFile.File = ({ fileName, functionRemoveFile, functionClickFileName, iconFile, disabled, ...props }) => {
+MultipleInputFile.File = ({
+  fileName,
+  functionRemoveFile,
+  functionClickFileName,
+  iconFile,
+  disabled,
+  customIconFile,
+  ...props
+}) => {
   return (
     <div onClick={functionClickFileName} className={style['multiple-input-file-container-filename']}>
       {iconFile && <div className={style['multiple-input-filename-icon']}></div>}
+      {customIconFile}
       <div className={style['multiple-input-filename']}>{fileName}</div>
       {!disabled && (
         <img

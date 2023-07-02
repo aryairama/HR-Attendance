@@ -15,6 +15,7 @@ const useUserDuties = () => {
   const [dutiesAreas, setDutiesAreas] = useState([]);
   const [selectedArea, setSelectedArea] = useState();
   const [document, setDocument] = useState([]);
+  const [currentDocument, setCurrentDocument] = useState([]);
   const columnHelper = createColumnHelper();
   const [listuserDutiesAreasFilter, setListuserDutiesAreasFilter] = useReducer(datatableReducer, initialDatatable);
   const columnsListuserDutiesAreasFilter = [
@@ -78,6 +79,11 @@ const useUserDuties = () => {
       tableListuserDutiesAreasFilter.setRowSelection({})
     );
   };
+  const handlerRemoveFile = (index) => {
+    const temporaryDocument = [...document];
+    temporaryDocument.splice(index, 1);
+    setDocument(temporaryDocument);
+  };
   useEffect(() => {
     (async () => {
       const areas = await userDutiesAreas();
@@ -90,6 +96,7 @@ const useUserDuties = () => {
         setListuserDutiesAreasFilter({ type: 'FETCH_DATA' });
         const data = await userDutiesAreasFilter(selectedArea);
         setListuserDutiesAreasFilter({ type: 'STORE_DATA', payload: { data: data[0].user_duties, pagination: {} } });
+        setCurrentDocument(data[0].documents);
       }
     })();
   }, [selectedArea, reload]);
@@ -102,6 +109,8 @@ const useUserDuties = () => {
     handlerSubmit,
     setDocument,
     document,
+    currentDocument,
+    handlerRemoveFile,
   };
 };
 
