@@ -42,7 +42,7 @@ const useUserDuties = () => {
               }}
             />
           ) : (
-            <input type="checkbox" className="checked:bg-gray-500" checked={true} disabled />
+            <input type="checkbox" className="checked:bg-gray-500" checked={true} disabled={true} />
           )}
         </div>
       ),
@@ -62,6 +62,7 @@ const useUserDuties = () => {
     getFilteredRowModel: getFilteredRowModel(), // model filter data
     manualSorting: true,
     getRowId: (row) => row.id,
+    enableRowSelection: (row) => row.original.status === 'unexecuted',
   });
   const handlerSubmit = () => {
     const ids = [];
