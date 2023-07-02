@@ -7,7 +7,7 @@
 }
 
 .form-login-description {
-    @apply text-base font-medium w-full text-center mb-[26px];
+    @apply text-base font-medium w-full text-center mb-[12px];
 }
 
 .form-login-card {
