@@ -54,7 +54,7 @@ export const userDutiesChecklist = async (
     await axios().post(`/user-duties/checklist`, formData);
     setReload((oldVal) => !oldVal);
     setDocument([]);
-    unSelectTable();
+    unSelectTable({});
     toast.success('Berhasil melakukan pekerjaan');
   } catch (error) {
     if (error.response.status >= 400 && error.response.status < 500) {

@@ -37,7 +37,7 @@ const useAbsent = () => {
   const showToastGeolocation = (tipe) => {
     toast.warn(`Izinkan akses ${tipe} untuk melanjutkan absensi`, {
       onClose: () => {
-        navigate('/dashboard', { replace: true });
+        // navigate('/dashboard', { replace: true });
       },
     });
   };
@@ -66,8 +66,8 @@ const useAbsent = () => {
     absent({ file, ...latLong, attendance }, navigate);
   };
   useEffect(() => {
+    checkPermission();
     let timeInterval = setInterval(() => {
-      checkPermission();
       setTime(new Date());
     }, 1000);
     return () => {

@@ -14,6 +14,7 @@ const useUserDuties = () => {
   const [reload, setReload] = useState(false);
   const [dutiesAreas, setDutiesAreas] = useState([]);
   const [selectedArea, setSelectedArea] = useState();
+  const [userDutyAreaId, setUserDutyAreaId] = useState();
   const [document, setDocument] = useState([]);
   const [currentDocument, setCurrentDocument] = useState([]);
   const columnHelper = createColumnHelper();
@@ -74,7 +75,7 @@ const useUserDuties = () => {
       ids,
       document,
       setReload,
-      selectedArea,
+      userDutyAreaId,
       setDocument,
       tableListuserDutiesAreasFilter.setRowSelection
     );
@@ -97,6 +98,7 @@ const useUserDuties = () => {
         const data = await userDutiesAreasFilter(selectedArea);
         setListuserDutiesAreasFilter({ type: 'STORE_DATA', payload: { data: data[0].user_duties, pagination: {} } });
         setCurrentDocument(data[0].documents);
+        setUserDutyAreaId(data[0].user_duty_area_id);
       }
     })();
   }, [selectedArea, reload]);
