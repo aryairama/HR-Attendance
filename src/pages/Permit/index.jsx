@@ -1,7 +1,16 @@
 import { Card, Input, Button, Pagination, InputFile } from '../../components/base';
 import { CardThemeFlexRowWrap } from '../../components/base/Card';
 import { IonIcon } from '@ionic/react';
-import { repeatOutline, addCircleOutline, checkmarkOutline, calendarOutline, chatbubbleOutline } from 'ionicons/icons';
+import {
+  repeatOutline,
+  addCircleOutline,
+  checkmarkOutline,
+  calendarOutline,
+  chatbubbleOutline,
+  hourglassOutline,
+  checkmarkCircleOutline,
+  banOutline,
+} from 'ionicons/icons';
 import { usePermit } from '../../hooks/local';
 import { ModalDialog } from '../../components/module';
 import { createPortal } from 'react-dom';
@@ -70,8 +79,25 @@ const Permit = () => {
               <p className="text-xs text-gray-600 mb-[1px]">
                 <IonIcon icon={calendarOutline} /> Selesai : {value.end_date}
               </p>
-              <p className="text-xs text-gray-600 mb-[1px]">
-                <IonIcon icon={chatbubbleOutline} /> Status : {value.approval_status}
+              <p className="text-xs text-gray-600 mb-[1px] flex gap-x-[3px]">
+                {value.approval_status === 'pending' && (
+                  <>
+                    <IonIcon className="text-yellow-500 font-bold" icon={hourglassOutline} />
+                    <span className="text-yellow-500 font-bold uppercase">{value.approval_status}</span>
+                  </>
+                )}
+                {value.approval_status === 'rejected' && (
+                  <>
+                    <IonIcon className="text-red-500 font-bold" icon={banOutline} />
+                    <span className="text-red-500 font-bold uppercase">{value.approval_status}</span>
+                  </>
+                )}
+                {value.approval_status === 'approved' && (
+                  <>
+                    <IonIcon className="text-green-500 font-bold" icon={checkmarkCircleOutline} />
+                    <span className="text-green-500 font-bold uppercase">{value.approval_status}</span>
+                  </>
+                )}
               </p>
               <p className="text-xs text-gray-600 mb-[1px]">
                 <IonIcon icon={chatbubbleOutline} /> {value.description}

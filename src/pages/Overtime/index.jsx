@@ -9,6 +9,9 @@ import {
   chatbubbleOutline,
   pencilOutline,
   timeOutline,
+  checkmarkCircleOutline,
+  banOutline,
+  hourglassOutline,
 } from 'ionicons/icons';
 import { IonIcon } from '@ionic/react';
 import { createPortal } from 'react-dom';
@@ -68,14 +71,34 @@ const Overtime = () => {
             key={index}
           >
             <div className="flex flex-col flex-wrap">
-              <p className="text-xs flex items-center gap-2 text-white mb-2">
+              {/* <p className="text-xs flex items-center gap-2 text-white mb-2">
                 <span className="bg-purple-700 rounded-md p-1 ">{value.approval_status}</span>
-              </p>
+              </p> */}
               <p className="text-xs text-gray-600 mb-[1px]">
                 <IonIcon icon={calendarOutline} /> {value.start_date} - {value.end_date}
               </p>
               <p className="text-xs text-gray-600 mb-[1px]">
                 <IonIcon icon={timeOutline} /> Mulai Lembur : {value.start_time} - {value.end_time}
+              </p>
+              <p className="text-xs text-gray-600 mb-[1px] flex gap-x-[3px]">
+                {value.approval_status === 'pending' && (
+                  <>
+                    <IonIcon className="text-yellow-500 font-bold" icon={hourglassOutline} />
+                    <span className="text-yellow-500 font-bold uppercase">{value.approval_status}</span>
+                  </>
+                )}
+                {value.approval_status === 'rejected' && (
+                  <>
+                    <IonIcon className="text-red-500 font-bold" icon={banOutline} />
+                    <span className="text-red-500 font-bold uppercase">{value.approval_status}</span>
+                  </>
+                )}
+                {value.approval_status === 'approved' && (
+                  <>
+                    <IonIcon className="text-green-500 font-bold" icon={checkmarkCircleOutline} />
+                    <span className="text-green-500 font-bold uppercase">{value.approval_status}</span>
+                  </>
+                )}
               </p>
               <p className="text-xs text-gray-600 mb-[1px]">
                 <IonIcon icon={chatbubbleOutline} /> {value.description}
