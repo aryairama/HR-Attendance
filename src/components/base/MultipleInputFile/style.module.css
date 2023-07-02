@@ -1,0 +1,38 @@
+.multiple-input-file-container {
+  @apply w-full flex flex-wrap flex-row items-center gap-x-[21px] gap-y-[12px];
+}
+
+.multiple-input-file-button {
+  @apply cursor-pointer;
+  @apply gap-x-1 flex flex-wrap w-auto items-center text-sm py-[8px] px-[16px] rounded-lg font-bold;
+  @apply bg-[#98321F] border border-transparent text-white;
+}
+
+.multiple-input-file-button:disabled {
+  @apply bg-gray-400 text-white;
+}
+
+.multiple-input-file-icon {
+  @apply flex-shrink-0 w-[22px] h-[22px] bg-cover bg-center;
+}
+
+.multiple-input-file-label-error {
+  @apply w-full text-[12px] text-[#EE2B2E] break-normal font-medium order-2;
+}
+
+.multiple-input-file-container-filename {
+  @apply w-auto flex items-center gap-[8px] order-1 bg-[#98321F] p-2 rounded-lg self-stretch;
+}
+
+.multiple-input-filename {
+  @apply text-sm text-white font-bold;
+}
+
+.multiple-input-filename-icon {
+  background-image: url('../../../assets/icons/icon-word-primary-30.svg');
+  @apply w-[24px] h-[24px] flex-shrink-0 bg-cover bg-center bg-no-repeat;
+}
+
+.multiple-input-icon-remove-file {
+  @apply flex-shrink-0 bg-cover bg-center bg-no-repeat w-[25px] h-[25px] cursor-pointer;
+}

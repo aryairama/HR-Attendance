@@ -3,7 +3,8 @@
 }
 
 .main-divider {
-    @apply bg-[#1b90de] h-36 w-full;
+    @apply bg-[#98321F]  h-36 w-full;
+    /* color base bg-[#1b90de] */
 }
 
 .main-content {

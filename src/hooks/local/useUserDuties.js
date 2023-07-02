@@ -14,6 +14,7 @@ const useUserDuties = () => {
   const [reload, setReload] = useState(false);
   const [dutiesAreas, setDutiesAreas] = useState([]);
   const [selectedArea, setSelectedArea] = useState();
+  const [document, setDocument] = useState([]);
   const columnHelper = createColumnHelper();
   const [listuserDutiesAreasFilter, setListuserDutiesAreasFilter] = useReducer(datatableReducer, initialDatatable);
   const columnsListuserDutiesAreasFilter = [
@@ -40,7 +41,9 @@ const useUserDuties = () => {
                 onChange: row.getToggleSelectedHandler(),
               }}
             />
-          ) : null}
+          ) : (
+            <input type="checkbox" className="checked:bg-gray-500" checked={true} disabled />
+          )}
         </div>
       ),
       enableSorting: false,
@@ -65,7 +68,14 @@ const useUserDuties = () => {
     Object.keys(tableListuserDutiesAreasFilter.getState().rowSelection).forEach((key) => {
       ids.push(key);
     });
-    userDutiesChecklist(ids, null, setReload);
+    userDutiesChecklist(
+      ids,
+      document,
+      setReload,
+      selectedArea,
+      setDocument,
+      tableListuserDutiesAreasFilter.setRowSelection({})
+    );
   };
   useEffect(() => {
     (async () => {
@@ -78,11 +88,20 @@ const useUserDuties = () => {
       if (selectedArea !== undefined) {
         setListuserDutiesAreasFilter({ type: 'FETCH_DATA' });
         const data = await userDutiesAreasFilter(selectedArea);
-        setListuserDutiesAreasFilter({ type: 'STORE_DATA', payload: { data, pagination: {} } });
+        setListuserDutiesAreasFilter({ type: 'STORE_DATA', payload: { data: data[0].user_duties, pagination: {} } });
       }
     })();
   }, [selectedArea, reload]);
-  return { dutiesAreas, setDutiesAreas, selectedArea, setSelectedArea, tableListuserDutiesAreasFilter, handlerSubmit };
+  return {
+    dutiesAreas,
+    setDutiesAreas,
+    selectedArea,
+    setSelectedArea,
+    tableListuserDutiesAreasFilter,
+    handlerSubmit,
+    setDocument,
+    document,
+  };
 };
 
 export default useUserDuties;

@@ -111,7 +111,7 @@ const Permit = () => {
                 <Input name="start_date" id="start_date" label="Tanggal Mulai" type="date" />
                 <Input name="end_date" id="end_date" label="Tanggal Akhir" type="date" />
                 <InputFile
-                  label="Tanda Terima Invoice"
+                  label="Berkas"
                   id="document"
                   name="document"
                   accept="image/jpeg, image/jpg, image/png, application/pdf"

@@ -33,17 +33,28 @@ export const userDutiesAreasFilter = async (id) => {
   }
 };
 
-export const userDutiesChecklist = async (ids = [], file, setReload) => {
+export const userDutiesChecklist = async (
+  ids = [],
+  document = [],
+  setReload,
+  selectedArea,
+  setDocument,
+  unSelectTable
+) => {
   store.dispatch(SHOW_LOADER());
   try {
-    const batchFetch = [];
-    ids.forEach((value) => {
-      const formData = new FormData();
-      formData.append('user_duty_id', value);
-      batchFetch.push(axios().post(`/user-duties/checklist`, formData));
+    const formData = new FormData();
+    formData.append('user_duty_area_id', selectedArea);
+    ids.forEach((value, index) => {
+      formData.append(`user_duty_id[${index}]`, value);
     });
-    await Promise.all(batchFetch);
+    document.forEach((value, index) => {
+      formData.append(`document[${index}]`, value);
+    });
+    await axios().post(`/user-duties/checklist`, formData);
     setReload((oldVal) => !oldVal);
+    setDocument([]);
+    unSelectTable();
     toast.success('Berhasil melakukan pekerjaan');
   } catch (error) {
     if (error.response.status >= 400 && error.response.status < 500) {

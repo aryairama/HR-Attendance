@@ -22,7 +22,7 @@ const DashboardLayout = () => {
   return (
     <div className={style['main-wrapper']}>
       {/* <div className={style['sidebar']}></div> */}
-      <nav className="bg-[#1b90de] border-gray-200 fixed w-full z-50">
+      <nav className="bg-[#98321F] border-gray-200 fixed w-full z-50">
         <div className="flex flex-wrap items-center justify-between mx-auto p-4">
           <div className="items-center justify-between flex w-auto " id="mobile-menu-2">
             <ul className="flex flex-col font-medium rounded-lg bg-transparent md:flex-row space-x-8">
