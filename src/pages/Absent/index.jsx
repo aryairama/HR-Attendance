@@ -31,9 +31,8 @@ const Absent = () => {
         </p>
         <Card.Divider />
         <Webcam
-          className="mx-auto -scale-x-[1]"
+          className="mx-auto -scale-x-[1] !w-[40vh]"
           audio={false}
-          height={300}
           screenshotFormat="image/jpeg"
           width={360}
           videoConstraints={{
