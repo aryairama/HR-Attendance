@@ -5,7 +5,7 @@
 .multiple-input-file-button {
   @apply cursor-pointer;
   @apply gap-x-1 flex flex-wrap w-auto items-center text-sm py-[8px] px-[16px] rounded-lg font-bold;
-  @apply bg-blue-500 border border-transparent text-white;
+  @apply bg-[#98321F] border border-transparent text-white;
 }
 
 .multiple-input-file-button:disabled {
@@ -21,7 +21,7 @@
 }
 
 .multiple-input-file-container-filename {
-  @apply w-auto flex items-center gap-[8px] order-1 bg-blue-500 p-2 rounded-lg self-stretch;
+  @apply w-auto flex items-center gap-[8px] order-1 bg-[#98321F] p-2 rounded-lg self-stretch;
 }
 
 .multiple-input-filename {
