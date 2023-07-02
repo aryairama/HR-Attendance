@@ -76,7 +76,7 @@ const useUserDuties = () => {
       setReload,
       selectedArea,
       setDocument,
-      tableListuserDutiesAreasFilter.setRowSelection({})
+      tableListuserDutiesAreasFilter.setRowSelection
     );
   };
   const handlerRemoveFile = (index) => {
