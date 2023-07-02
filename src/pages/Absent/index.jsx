@@ -33,7 +33,7 @@ const Absent = () => {
         <Webcam
           className="mx-auto -scale-x-[1]"
           audio={false}
-          height={400}
+          height={300}
           screenshotFormat="image/jpeg"
           width={360}
           videoConstraints={{
