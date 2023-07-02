@@ -23,15 +23,15 @@
 } */
 
 .pagination>.next-prev:not(.active):not(.disabled):hover {
-  @apply text-[#1b90de];
+  @apply text-[#98321F];
 }
 
 .pagination>li:not(.active):not(.disabled):not(.next-prev):active {
-  @apply bg-[#1b90de] text-white border-x-[#1b90de];
+  @apply bg-[#98321F] text-white border-x-[#98321F];
 }
 
 .pagination>li.active {
-  @apply bg-[#1b90de] text-white border-x-[#1b90de];
+  @apply bg-[#98321F] text-white border-x-[#98321F];
 }
 
 .pagination>li.disabled {
