@@ -51,12 +51,19 @@ const useAbsent = () => {
         showToastGeolocation('lokasi');
       }
     );
-    const camera = await navigator.permissions.query({ name: 'camera' });
-    if (camera.state !== 'granted' && camera.state !== 'prompt') {
-      showToastGeolocation('kamera selfie');
-    } else {
-      setAccessAbsent((oldVal) => ({ ...oldVal, camera: true }));
-    }
+    navigator.mediaDevices
+      .getUserMedia({
+        audio: false,
+        video: {
+          facingMode: 'user',
+        },
+      })
+      .then(() => {
+        setAccessAbsent((oldVal) => ({ ...oldVal, camera: true }));
+      })
+      .catch(() => {
+        showToastGeolocation('kamera selfie');
+      });
   };
 
   const submitAbsent = async (getScreenshot, attendance) => {

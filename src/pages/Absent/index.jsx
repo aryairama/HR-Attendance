@@ -36,7 +36,7 @@ const Absent = () => {
           screenshotFormat="image/jpeg"
           width={360}
           videoConstraints={{
-            facingMode: 'selfie',
+            facingMode: 'user',
             mirrored: true,
           }}
           onError={(error) => {
