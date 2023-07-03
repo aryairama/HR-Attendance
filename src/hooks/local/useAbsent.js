@@ -61,8 +61,13 @@ const useAbsent = () => {
       .then(() => {
         setAccessAbsent((oldVal) => ({ ...oldVal, camera: true }));
       })
-      .catch(() => {
-        showToastGeolocation('kamera selfie');
+      .catch(async () => {
+        const camera = await navigator.permissions.query({ name: 'camera' });
+        if (camera.state !== 'granted' && camera.state !== 'prompt') {
+          showToastGeolocation('kamera selfie');
+        } else {
+          setAccessAbsent((oldVal) => ({ ...oldVal, camera: true }));
+        }
       });
   };
 
