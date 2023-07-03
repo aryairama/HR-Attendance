@@ -77,7 +77,7 @@ const Home = () => {
             <IonIcon className={`${style['list-menu-icon']} bg-[#754AED]`} icon={analyticsOutline}></IonIcon>
             <p>Laporan Pekerjaan</p>
           </div>
-          <div className={style['list-menu']} onClick={() => window.open('https://www.google.com/', '_blank')}>
+          <div className={style['list-menu']} onClick={() => window.open('http://203.176.177.245', '_blank')}>
             <IonIcon className={`${style['list-menu-icon']} bg-red-700`} icon={constructOutline}></IonIcon>
             <p>Stock Opname MAC</p>
           </div>
